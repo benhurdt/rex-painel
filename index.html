@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rex AI — Painel do Corretor</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
@@ -12,296 +12,378 @@
   --gold:#D4A017;--gold-light:#E8B93A;--gold-pale:#FBF4E0;
   --white:#FFFFFF;--gray-50:#F8F9FA;--gray-100:#F0F2F5;
   --gray-200:#E2E6EA;--gray-400:#9AA5B4;--gray-600:#627182;--gray-800:#2D3748;
-  --green:#1A7A4A;--green-pale:#E8F5EE;
-  --red:#C0392B;--red-pale:#FDECEA;
-  --amber:#B7770D;--amber-pale:#FEF6E4;
+  --green:#16783A;--green-pale:#E8F5EE;--green-bright:#4ade80;
+  --red:#B91C1C;--red-pale:#FEE2E2;
+  --amber:#B45309;--amber-pale:#FEF6E4;
+  --purple:#7C3AED;--purple-pale:#EDE9FE;
   --sidebar-w:240px;
 }
-body{font-family:'DM Sans',sans-serif;background:var(--gray-100);color:var(--gray-800);display:flex;min-height:100vh;}
+body{font-family:'Inter',sans-serif;background:var(--gray-100);color:var(--gray-800);display:flex;min-height:100vh;}
 
 /* SIDEBAR */
 .sidebar{width:var(--sidebar-w);background:var(--navy-dark);min-height:100vh;position:fixed;top:0;left:0;display:flex;flex-direction:column;z-index:100;transition:transform 0.3s;}
-.sidebar-logo{padding:28px 24px 20px;border-bottom:1px solid rgba(255,255,255,0.08);}
-.logo-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--gold);}
-.logo-sub{font-size:10px;color:rgba(255,255,255,0.45);letter-spacing:1.5px;text-transform:uppercase;margin-top:2px;}
-.sidebar-nav{padding:16px 0;flex:1;overflow-y:auto;}
-.nav-section{padding:8px 16px 4px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.25);font-weight:500;}
-.nav-item{display:flex;align-items:center;gap:12px;padding:10px 20px;cursor:pointer;color:rgba(255,255,255,0.55);font-size:14px;font-weight:400;border-left:3px solid transparent;text-decoration:none;transition:all 0.15s;}
-.nav-item:hover{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.85);}
-.nav-item.active{background:rgba(212,160,23,0.12);color:var(--gold-light);border-left-color:var(--gold);font-weight:500;}
-.nav-icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
-.sidebar-footer{padding:16px 20px;border-top:1px solid rgba(255,255,255,0.08);}
+.sidebar-logo{padding:24px 20px 18px;border-bottom:1px solid rgba(255,255,255,0.07);}
+.logo-title{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;color:var(--gold);}
+.logo-v{font-size:10px;color:rgba(255,255,255,0.25);letter-spacing:.5px;margin-left:4px;vertical-align:middle;}
+.logo-sub{font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:1.5px;text-transform:uppercase;margin-top:2px;}
+.sidebar-nav{padding:12px 0;flex:1;overflow-y:auto;}
+.nav-section{padding:8px 16px 4px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.2);font-weight:600;}
+.nav-item{display:flex;align-items:center;gap:11px;padding:9px 18px;cursor:pointer;color:rgba(255,255,255,0.5);font-size:13px;font-weight:400;border-left:3px solid transparent;text-decoration:none;transition:all 0.15s;}
+.nav-item:hover{background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.8);}
+.nav-item.active{background:rgba(212,160,23,0.1);color:var(--gold-light);border-left-color:var(--gold);font-weight:500;}
+.nav-icon{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+.nav-badge{margin-left:auto;background:rgba(212,160,23,0.2);color:var(--gold-light);font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600;}
+.sidebar-footer{padding:14px 18px;border-top:1px solid rgba(255,255,255,0.07);}
 .corretor-info{display:flex;align-items:center;gap:10px;}
-.avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold) 0%,#B8860B 100%);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--navy-dark);flex-shrink:0;}
+.avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#B8860B);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--navy-dark);flex-shrink:0;}
 .corretor-name{font-size:13px;font-weight:500;color:rgba(255,255,255,0.85);}
-.corretor-creci{font-size:11px;color:rgba(255,255,255,0.35);}
+.corretor-creci{font-size:11px;color:rgba(255,255,255,0.3);}
 .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:99;}
 
 /* MAIN */
 .main{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column;min-width:0;}
-.topbar{background:var(--white);border-bottom:1px solid var(--gray-200);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;}
+.topbar{background:var(--white);border-bottom:1px solid var(--gray-200);padding:0 24px;height:58px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;}
 .topbar-left{display:flex;align-items:center;gap:12px;}
 .hamburger{display:none;background:none;border:none;cursor:pointer;padding:4px;color:var(--navy);}
-.topbar-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:var(--navy);}
+.topbar-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:600;color:var(--navy);}
 .topbar-right{display:flex;align-items:center;gap:12px;}
 .topbar-date{font-size:13px;color:var(--gray-600);}
-.badge-notif{position:relative;width:36px;height:36px;border-radius:50%;background:var(--gray-100);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;}
-.badge-dot{position:absolute;top:6px;right:6px;width:8px;height:8px;border-radius:50%;background:var(--gold);border:2px solid var(--white);}
+.badge-notif{position:relative;width:34px;height:34px;border-radius:50%;background:var(--gray-100);display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.badge-dot{position:absolute;top:6px;right:6px;width:7px;height:7px;border-radius:50%;background:var(--gold);border:2px solid var(--white);}
 
 /* PAGES */
-.page{display:none;padding:24px;flex-direction:column;gap:20px;}
+.page{display:none;padding:22px;flex-direction:column;gap:18px;}
 .page.active{display:flex;}
 
 /* SECTION CARD */
 .section-card{background:var(--white);border-radius:12px;border:1px solid var(--gray-200);overflow:hidden;}
-.section-header{padding:16px 20px;border-bottom:1px solid var(--gray-100);display:flex;align-items:center;justify-content:space-between;}
-.section-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:var(--navy);}
+.section-header{padding:14px 20px;border-bottom:1px solid var(--gray-100);display:flex;align-items:center;justify-content:space-between;}
+.section-title{font-family:'Playfair Display',serif;font-size:14px;font-weight:600;color:var(--navy);}
 .section-action{font-size:12px;color:var(--gold);cursor:pointer;font-weight:500;}
 
 /* KPI */
 .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
-.kpi-card{background:var(--white);border-radius:12px;border:1px solid var(--gray-200);padding:18px 20px;display:flex;flex-direction:column;gap:10px;}
+.kpi-card{background:var(--white);border-radius:12px;border:1px solid var(--gray-200);padding:16px 18px;display:flex;flex-direction:column;gap:8px;transition:box-shadow .2s;}
+.kpi-card:hover{box-shadow:0 4px 16px rgba(15,45,82,0.08);}
 .kpi-header{display:flex;align-items:center;justify-content:space-between;}
-.kpi-label{font-size:12px;color:var(--gray-600);font-weight:500;}
-.kpi-icon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;}
+.kpi-label{font-size:11px;color:var(--gray-600);font-weight:500;text-transform:uppercase;letter-spacing:.4px;}
+.kpi-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;}
 .kpi-icon.navy{background:rgba(15,45,82,0.08);}
 .kpi-icon.gold{background:var(--gold-pale);}
 .kpi-icon.green{background:var(--green-pale);}
 .kpi-icon.amber{background:var(--amber-pale);}
-.kpi-value{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;color:var(--navy);line-height:1;}
-.kpi-trend{display:flex;align-items:center;gap:4px;font-size:12px;}
+.kpi-icon.purple{background:var(--purple-pale);}
+.kpi-value{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--navy);line-height:1;}
+.kpi-trend{display:flex;align-items:center;gap:4px;font-size:11px;}
 .trend-up{color:var(--green);}
+.trend-neutral{color:var(--gray-400);}
 
-/* MAIN GRID DASHBOARD */
-.main-grid{display:grid;grid-template-columns:1fr 320px;gap:20px;}
+/* MAIN GRID */
+.main-grid{display:grid;grid-template-columns:1fr 320px;gap:18px;}
+
+/* SCORE TRIPLO (novo) */
+.score-triplo{display:flex;flex-direction:column;gap:6px;margin:6px 0;}
+.score-ind{display:flex;flex-direction:column;gap:3px;}
+.score-ind-label{display:flex;justify-content:space-between;font-size:10px;color:var(--gray-400);text-transform:uppercase;letter-spacing:.5px;}
+.score-ind-label span{color:var(--gray-800);font-weight:600;letter-spacing:0;font-family:'JetBrains Mono',monospace;}
+.score-ind-bar{height:3px;background:var(--gray-100);border-radius:2px;overflow:hidden;}
+.score-ind-fill{height:100%;border-radius:2px;}
+.fill-green{background:var(--green);}
+.fill-gold{background:var(--gold);}
+.fill-gray{background:var(--gray-400);}
+.fill-amber{background:var(--amber);}
+.fill-red{background:var(--red);}
+
+/* BADGE PRIORIDADE */
+.badge-prio{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:14px;font-size:11px;font-weight:600;}
+.prio-ligar{background:rgba(185,28,28,.1);border:1px solid rgba(185,28,28,.25);color:var(--red);}
+.prio-visita{background:var(--gold-pale);border:1px solid rgba(212,160,23,.3);color:var(--amber);}
+.prio-nutrir{background:var(--green-pale);border:1px solid rgba(22,120,58,.3);color:var(--green);}
+.prio-arquivar{background:var(--gray-100);border:1px solid var(--gray-200);color:var(--gray-400);}
 
 /* LEADS TABLE */
 .leads-table{width:100%;border-collapse:collapse;}
-.leads-table th{padding:10px 20px;text-align:left;font-size:11px;font-weight:500;color:var(--gray-400);letter-spacing:0.8px;text-transform:uppercase;background:var(--gray-50);border-bottom:1px solid var(--gray-200);}
-.leads-table td{padding:13px 20px;font-size:13px;border-bottom:1px solid var(--gray-100);vertical-align:middle;}
+.leads-table th{padding:9px 18px;text-align:left;font-size:10px;font-weight:600;color:var(--gray-400);letter-spacing:.8px;text-transform:uppercase;background:var(--gray-50);border-bottom:1px solid var(--gray-200);}
+.leads-table td{padding:12px 18px;font-size:13px;border-bottom:1px solid var(--gray-100);vertical-align:middle;}
 .leads-table tr:last-child td{border-bottom:none;}
 .leads-table tr:hover td{background:var(--gray-50);cursor:pointer;}
-.lead-name{font-weight:500;color:var(--navy);}
-.lead-phone{font-size:12px;color:var(--gray-600);margin-top:2px;}
+.lead-name{font-weight:600;color:var(--navy);}
+.lead-phone{font-size:11px;color:var(--gray-400);margin-top:2px;}
 .leads-cards{display:none;flex-direction:column;}
-.lead-card{padding:16px 20px;border-bottom:1px solid var(--gray-100);cursor:pointer;}
+.lead-card{padding:14px 18px;border-bottom:1px solid var(--gray-100);cursor:pointer;transition:background .1s;}
 .lead-card:last-child{border-bottom:none;}
 .lead-card:hover{background:var(--gray-50);}
-.lead-card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px;}
-.lead-card-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.lead-card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px;}
+.lead-card-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;}
 
 /* BADGES */
-.objective-badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:500;}
+.objective-badge{display:inline-flex;align-items:center;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:500;}
 .obj-comprar{background:rgba(15,45,82,0.08);color:var(--navy);}
 .obj-vender{background:var(--amber-pale);color:var(--amber);}
 .obj-alugar{background:var(--green-pale);color:var(--green);}
 .score-bar{display:flex;align-items:center;gap:6px;}
-.score-track{width:50px;height:4px;background:var(--gray-200);border-radius:2px;overflow:hidden;}
+.score-track{width:44px;height:4px;background:var(--gray-200);border-radius:2px;overflow:hidden;}
 .score-fill{height:100%;border-radius:2px;}
 .score-fill.high{background:var(--green);}
 .score-fill.medium{background:var(--gold);}
 .score-fill.low{background:var(--gray-400);}
-.score-num{font-size:12px;font-weight:500;color:var(--gray-600);min-width:24px;}
-.status-pill{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:500;}
+.score-num{font-size:11px;font-weight:600;color:var(--gray-600);min-width:22px;font-family:'JetBrains Mono',monospace;}
+.status-pill{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:500;}
 .status-qualificado{background:var(--green-pale);color:var(--green);}
 .status-qualificando{background:var(--amber-pale);color:var(--amber);}
 .status-novo{background:var(--gray-100);color:var(--gray-600);}
 .status-transferido{background:rgba(15,45,82,0.08);color:var(--navy);}
 
+/* MATCH ENGINE (novo) */
+.match-card{padding:12px 18px;border-bottom:1px solid var(--gray-100);display:flex;align-items:flex-start;gap:12px;}
+.match-card:last-child{border-bottom:none;}
+.match-score-circle{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;}
+.match-score-high{background:var(--green-pale);color:var(--green);}
+.match-score-mid{background:var(--gold-pale);color:var(--amber);}
+.match-score-low{background:var(--gray-100);color:var(--gray-400);}
+.match-info{flex:1;min-width:0;}
+.match-name{font-size:13px;font-weight:600;color:var(--navy);}
+.match-detail{font-size:11px;color:var(--gray-600);margin-top:2px;}
+.match-fits{display:flex;gap:4px;flex-wrap:wrap;margin-top:5px;}
+.fit-tag{font-size:10px;padding:2px 7px;border-radius:10px;font-weight:500;}
+.fit-ok{background:var(--green-pale);color:var(--green);}
+.fit-partial{background:var(--amber-pale);color:var(--amber);}
+.match-action{font-size:11px;color:var(--gold);cursor:pointer;font-weight:600;flex-shrink:0;padding-top:14px;}
+
+/* MOTIVOS (novo) */
+.motivos-block{padding:10px 14px;margin:8px 18px;border-radius:8px;background:var(--gray-50);border:1px solid var(--gray-100);}
+.motivos-pos{font-size:11px;color:var(--green);font-weight:600;margin-bottom:4px;}
+.motivos-neg{font-size:11px;color:var(--amber);font-weight:600;margin-top:8px;margin-bottom:4px;}
+.motivo-item{font-size:11px;color:var(--gray-600);padding:2px 0;display:flex;align-items:flex-start;gap:5px;}
+
+/* POTENCIAL CAPTAÇÃO (novo) */
+.cap-card-inner{padding:14px 18px;border-bottom:1px solid var(--gray-100);}
+.cap-card-inner:last-child{border-bottom:none;}
+.cap-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px;}
+.cap-imovel{font-size:13px;font-weight:600;color:var(--navy);}
+.cap-loc{font-size:11px;color:var(--gray-600);margin-top:2px;}
+.cap-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:14px;font-size:11px;font-weight:600;}
+.cap-premium{background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.25);color:var(--purple);}
+.cap-estrategica{background:var(--green-pale);border:1px solid rgba(22,120,58,.25);color:var(--green);}
+.cap-regular{background:var(--amber-pale);border:1px solid rgba(180,83,9,.2);color:var(--amber);}
+.cap-baixa{background:var(--red-pale);border:1px solid rgba(185,28,28,.2);color:var(--red);}
+.cap-scores{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px;}
+.cap-score-item{text-align:center;padding:6px 8px;background:var(--gray-50);border-radius:8px;}
+.cap-score-label{font-size:9px;color:var(--gray-400);text-transform:uppercase;letter-spacing:.5px;}
+.cap-score-val{font-size:16px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--navy);margin-top:2px;}
+.cap-ilc{display:flex;align-items:center;gap:8px;margin-top:10px;padding-top:10px;border-top:1px solid var(--gray-100);}
+.cap-ilc-label{font-size:11px;color:var(--gray-600);}
+.cap-ilc-bar{flex:1;height:5px;background:var(--gray-100);border-radius:3px;overflow:hidden;}
+.cap-ilc-fill{height:100%;border-radius:3px;background:var(--green);}
+.cap-ilc-val{font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace;color:var(--gray-800);}
+.cap-probs{display:flex;gap:8px;margin-top:8px;}
+.cap-prob{flex:1;text-align:center;padding:6px;background:rgba(124,58,237,.06);border-radius:8px;border:1px solid rgba(124,58,237,.1);}
+.cap-prob-dias{font-size:9px;color:var(--gray-400);text-transform:uppercase;letter-spacing:.5px;}
+.cap-prob-val{font-size:15px;font-weight:700;color:var(--purple);font-family:'JetBrains Mono',monospace;}
+.cap-ticket{display:flex;align-items:center;justify-content:space-between;margin-top:8px;padding:8px 10px;background:var(--gold-pale);border-radius:8px;}
+.cap-ticket-label{font-size:11px;color:var(--amber);}
+.cap-ticket-val{font-size:14px;font-weight:700;color:var(--amber);font-family:'JetBrains Mono',monospace;}
+.cap-fit{margin-top:8px;padding:6px 10px;background:var(--navy-dark);border-radius:8px;font-size:11px;color:rgba(255,255,255,.65);}
+.cap-fit strong{color:var(--gold-light);}
+
 /* RIGHT COL */
-.right-col{display:flex;flex-direction:column;gap:20px;}
-.agenda-item{display:flex;gap:12px;padding:13px 20px;border-bottom:1px solid var(--gray-100);align-items:flex-start;}
+.right-col{display:flex;flex-direction:column;gap:18px;}
+.rex-header{padding:14px 18px;background:var(--navy-dark);display:flex;align-items:center;justify-content:space-between;}
+.rex-title{font-family:'Playfair Display',serif;font-size:14px;font-weight:600;color:var(--gold);}
+.rex-badge{background:rgba(212,160,23,0.2);color:var(--gold-light);font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;}
+.rex-insight{padding:11px 16px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;gap:10px;align-items:flex-start;}
+.rex-insight:last-child{border-bottom:none;}
+.rex-insight-icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;}
+.ri-urgent{background:rgba(185,28,28,.2);}
+.ri-hot{background:rgba(212,160,23,.2);}
+.ri-follow{background:rgba(15,45,82,.4);}
+.ri-match{background:rgba(124,58,237,.2);}
+.rex-insight-text{font-size:12px;color:rgba(255,255,255,0.7);line-height:1.5;}
+.rex-insight-text strong{color:rgba(255,255,255,0.95);font-weight:600;}
+.rex-action{display:inline-flex;font-size:11px;color:var(--gold-light);cursor:pointer;margin-top:3px;font-weight:500;}
+.agenda-item{display:flex;gap:12px;padding:12px 18px;border-bottom:1px solid var(--gray-100);align-items:flex-start;}
 .agenda-item:last-child{border-bottom:none;}
-.agenda-time{font-size:12px;font-weight:600;color:var(--navy);min-width:38px;padding-top:2px;}
-.agenda-dot{width:8px;height:8px;border-radius:50%;margin-top:5px;flex-shrink:0;}
+.agenda-time{font-size:11px;font-weight:600;color:var(--navy);min-width:36px;padding-top:2px;}
+.agenda-dot{width:7px;height:7px;border-radius:50%;margin-top:4px;flex-shrink:0;}
 .dot-gold{background:var(--gold);}
 .dot-navy{background:var(--navy);}
 .dot-green{background:var(--green);}
-.agenda-text{font-size:13px;color:var(--gray-800);font-weight:500;}
-.agenda-sub{font-size:12px;color:var(--gray-600);margin-top:2px;}
-.rex-header{padding:16px 20px;background:var(--navy-dark);display:flex;align-items:center;justify-content:space-between;}
-.rex-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:var(--gold);}
-.rex-badge{background:rgba(212,160,23,0.2);color:var(--gold-light);font-size:10px;font-weight:500;padding:3px 8px;border-radius:12px;}
-.rex-insight{padding:13px 18px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;gap:10px;align-items:flex-start;}
-.rex-insight:last-child{border-bottom:none;}
-.rex-insight-icon{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.ri-urgent{background:rgba(192,57,43,0.2);}
-.ri-hot{background:rgba(212,160,23,0.2);}
-.ri-follow{background:rgba(15,45,82,0.4);}
-.rex-insight-text{font-size:12px;color:rgba(255,255,255,0.75);line-height:1.5;}
-.rex-insight-text strong{color:rgba(255,255,255,0.95);font-weight:500;}
-.rex-action{display:inline-flex;font-size:11px;color:var(--gold-light);cursor:pointer;margin-top:4px;font-weight:500;}
+.dot-red{background:var(--red);}
+.agenda-text{font-size:12px;color:var(--gray-800);font-weight:500;}
+.agenda-sub{font-size:11px;color:var(--gray-600);margin-top:1px;}
 
 /* CONVERSAS */
-.conv-layout{display:grid;grid-template-columns:300px 1fr;height:calc(100vh - 108px);gap:0;border-radius:12px;overflow:hidden;border:1px solid var(--gray-200);}
+.conv-layout{display:grid;grid-template-columns:290px 1fr;height:calc(100vh - 108px);gap:0;border-radius:12px;overflow:hidden;border:1px solid var(--gray-200);}
 .conv-list{background:var(--white);border-right:1px solid var(--gray-200);display:flex;flex-direction:column;}
-.conv-search{padding:12px 16px;border-bottom:1px solid var(--gray-100);}
-.conv-search input{width:100%;padding:8px 12px;border:1px solid var(--gray-200);border-radius:8px;font-size:13px;font-family:'DM Sans',sans-serif;background:var(--gray-50);outline:none;}
-.conv-item{display:flex;gap:10px;padding:14px 16px;cursor:pointer;border-bottom:1px solid var(--gray-100);transition:background 0.1s;}
+.conv-search{padding:10px 14px;border-bottom:1px solid var(--gray-100);}
+.conv-search input{width:100%;padding:7px 11px;border:1px solid var(--gray-200);border-radius:8px;font-size:13px;font-family:'Inter',sans-serif;background:var(--gray-50);outline:none;}
+.conv-item{display:flex;gap:10px;padding:13px 14px;cursor:pointer;border-bottom:1px solid var(--gray-100);transition:background .1s;}
 .conv-item:hover,.conv-item.active{background:var(--gray-50);}
-.conv-item.active{background:rgba(15,45,82,0.05);}
-.conv-avatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;flex-shrink:0;}
-.av-blue{background:rgba(15,45,82,0.12);color:var(--navy);}
+.conv-item.active{background:rgba(15,45,82,.05);}
+.conv-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0;}
+.av-blue{background:rgba(15,45,82,.12);color:var(--navy);}
 .av-gold{background:var(--gold-pale);color:var(--amber);}
 .av-green{background:var(--green-pale);color:var(--green);}
 .conv-info{flex:1;min-width:0;}
 .conv-name{font-size:13px;font-weight:500;color:var(--gray-800);}
-.conv-preview{font-size:12px;color:var(--gray-600);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px;}
+.conv-preview{font-size:11px;color:var(--gray-600);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px;}
 .conv-meta{display:flex;flex-direction:column;align-items:flex-end;gap:4px;}
-.conv-time{font-size:11px;color:var(--gray-400);}
-.conv-unread{background:var(--gold);color:var(--navy-dark);font-size:10px;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.conv-time{font-size:10px;color:var(--gray-400);}
+.conv-unread{background:var(--gold);color:var(--navy-dark);font-size:10px;font-weight:700;width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
 .chat-area{background:var(--gray-50);display:flex;flex-direction:column;}
-.chat-header{background:var(--white);padding:14px 20px;border-bottom:1px solid var(--gray-200);display:flex;align-items:center;gap:12px;}
-.chat-msgs{flex:1;padding:16px 20px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;}
+.chat-header{background:var(--white);padding:12px 18px;border-bottom:1px solid var(--gray-200);display:flex;align-items:center;gap:10px;}
+.chat-msgs{flex:1;padding:14px 18px;overflow-y:auto;display:flex;flex-direction:column;gap:9px;}
 .msg{max-width:70%;display:flex;flex-direction:column;gap:3px;}
 .msg.user{align-self:flex-end;}
 .msg.bot{align-self:flex-start;}
-.msg-bubble{padding:10px 14px;border-radius:12px;font-size:13px;line-height:1.5;}
+.msg-bubble{padding:9px 13px;border-radius:12px;font-size:13px;line-height:1.5;}
 .msg.user .msg-bubble{background:var(--navy);color:var(--white);border-bottom-right-radius:4px;}
 .msg.bot .msg-bubble{background:var(--white);color:var(--gray-800);border:1px solid var(--gray-200);border-bottom-left-radius:4px;}
-.msg-time{font-size:11px;color:var(--gray-400);padding:0 4px;}
+.msg-time{font-size:10px;color:var(--gray-400);padding:0 4px;}
 .msg.user .msg-time{text-align:right;}
-.chat-input{background:var(--white);padding:12px 16px;border-top:1px solid var(--gray-200);display:flex;gap:10px;align-items:center;}
-.chat-input input{flex:1;padding:9px 14px;border:1px solid var(--gray-200);border-radius:20px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none;}
-.chat-send{width:36px;height:36px;border-radius:50%;background:var(--navy);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.chat-input{background:var(--white);padding:10px 14px;border-top:1px solid var(--gray-200);display:flex;gap:8px;align-items:center;}
+.chat-input input{flex:1;padding:8px 13px;border:1px solid var(--gray-200);border-radius:20px;font-size:13px;font-family:'Inter',sans-serif;outline:none;}
+.chat-send{width:34px;height:34px;border-radius:50%;background:var(--navy);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 
 /* CLIENTES */
-.clients-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
-.client-card{background:var(--white);border-radius:12px;border:1px solid var(--gray-200);padding:18px 20px;cursor:pointer;transition:box-shadow 0.2s;}
-.client-card:hover{box-shadow:0 4px 16px rgba(15,45,82,0.08);}
-.client-card-top{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
-.client-avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;flex-shrink:0;}
+.clients-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;}
+.client-card{background:var(--white);border-radius:12px;border:1px solid var(--gray-200);padding:16px 18px;cursor:pointer;transition:box-shadow .2s;}
+.client-card:hover{box-shadow:0 4px 16px rgba(15,45,82,.08);}
+.client-card-top{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.client-avatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;flex-shrink:0;}
 .client-name{font-size:14px;font-weight:600;color:var(--navy);}
-.client-phone{font-size:12px;color:var(--gray-600);margin-top:2px;}
-.client-details{display:flex;flex-direction:column;gap:6px;}
+.client-phone{font-size:11px;color:var(--gray-600);margin-top:2px;}
+.client-details{display:flex;flex-direction:column;gap:5px;}
 .client-detail-row{display:flex;justify-content:space-between;font-size:12px;}
 .client-detail-label{color:var(--gray-400);}
 .client-detail-value{color:var(--gray-800);font-weight:500;}
-.client-footer{margin-top:14px;padding-top:12px;border-top:1px solid var(--gray-100);display:flex;align-items:center;justify-content:space-between;}
+.client-footer{margin-top:12px;padding-top:10px;border-top:1px solid var(--gray-100);display:flex;align-items:center;justify-content:space-between;}
 
-/* AGENDA PAGE */
-.agenda-page-grid{display:grid;grid-template-columns:1fr 280px;gap:20px;}
-.agenda-day-header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--gray-100);}
-.agenda-nav-btn{background:none;border:1px solid var(--gray-200);border-radius:8px;padding:6px 12px;cursor:pointer;font-size:13px;color:var(--navy);font-family:'DM Sans',sans-serif;}
-.agenda-day-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:var(--navy);}
-.agenda-event{display:flex;gap:14px;padding:16px 20px;border-bottom:1px solid var(--gray-100);align-items:flex-start;}
+/* AGENDA */
+.agenda-page-grid{display:grid;grid-template-columns:1fr 270px;gap:18px;}
+.agenda-day-header{display:flex;align-items:center;justify-content:space-between;padding:13px 18px;border-bottom:1px solid var(--gray-100);}
+.agenda-nav-btn{background:none;border:1px solid var(--gray-200);border-radius:8px;padding:5px 11px;cursor:pointer;font-size:12px;color:var(--navy);font-family:'Inter',sans-serif;}
+.agenda-day-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:var(--navy);}
+.agenda-event{display:flex;gap:12px;padding:14px 18px;border-bottom:1px solid var(--gray-100);align-items:flex-start;}
 .agenda-event:last-child{border-bottom:none;}
-.event-time-col{min-width:48px;text-align:right;}
+.event-time-col{min-width:44px;text-align:right;}
 .event-time{font-size:12px;font-weight:600;color:var(--navy);}
-.event-end{font-size:11px;color:var(--gray-400);}
-.event-bar{width:4px;border-radius:2px;flex-shrink:0;align-self:stretch;min-height:40px;}
+.event-end{font-size:10px;color:var(--gray-400);}
+.event-bar{width:3px;border-radius:2px;flex-shrink:0;align-self:stretch;min-height:36px;}
 .event-body{flex:1;}
 .event-title{font-size:13px;font-weight:500;color:var(--gray-800);}
-.event-sub{font-size:12px;color:var(--gray-600);margin-top:3px;}
-.event-tag{display:inline-flex;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:500;margin-top:6px;}
-.tag-visita{background:rgba(15,45,82,0.08);color:var(--navy);}
+.event-sub{font-size:11px;color:var(--gray-600);margin-top:2px;}
+.event-tag{display:inline-flex;padding:2px 7px;border-radius:10px;font-size:10px;font-weight:500;margin-top:5px;}
+.tag-visita{background:rgba(15,45,82,.08);color:var(--navy);}
 .tag-reuniao{background:var(--amber-pale);color:var(--amber);}
 .tag-contrato{background:var(--green-pale);color:var(--green);}
 .tag-ligacao{background:var(--gray-100);color:var(--gray-600);}
-.mini-cal{background:var(--white);border-radius:12px;border:1px solid var(--gray-200);padding:16px;}
-.mini-cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
-.mini-cal-title{font-size:14px;font-weight:600;color:var(--navy);}
+.mini-cal{background:var(--white);border-radius:12px;border:1px solid var(--gray-200);padding:14px;}
+.mini-cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.mini-cal-title{font-size:13px;font-weight:600;color:var(--navy);}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center;}
-.cal-day-name{font-size:11px;color:var(--gray-400);padding:4px 0;font-weight:500;}
-.cal-day{font-size:13px;padding:6px 4px;border-radius:6px;cursor:pointer;color:var(--gray-800);}
+.cal-day-name{font-size:10px;color:var(--gray-400);padding:3px 0;font-weight:500;}
+.cal-day{font-size:12px;padding:5px 3px;border-radius:5px;cursor:pointer;color:var(--gray-800);}
 .cal-day:hover{background:var(--gray-100);}
 .cal-day.today{background:var(--navy);color:var(--white);font-weight:600;}
 .cal-day.has-event{position:relative;}
-.cal-day.has-event::after{content:'';position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:var(--gold);}
+.cal-day.has-event::after{content:'';position:absolute;bottom:1px;left:50%;transform:translateX(-50%);width:3px;height:3px;border-radius:50%;background:var(--gold);}
 .cal-day.other-month{color:var(--gray-400);}
 
 /* FINANCEIRO */
 .fin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
-.fin-card{background:var(--white);border-radius:12px;border:1px solid var(--gray-200);padding:18px 20px;}
-.fin-label{font-size:12px;color:var(--gray-600);font-weight:500;margin-bottom:8px;}
-.fin-value{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--navy);}
-.fin-sub{font-size:12px;color:var(--gray-400);margin-top:4px;}
+.fin-card{background:var(--white);border-radius:12px;border:1px solid var(--gray-200);padding:16px 18px;}
+.fin-label{font-size:11px;color:var(--gray-600);font-weight:500;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px;}
+.fin-value{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--navy);}
+.fin-sub{font-size:11px;color:var(--gray-400);margin-top:4px;}
 .transacoes-table{width:100%;border-collapse:collapse;}
-.transacoes-table th{padding:10px 20px;text-align:left;font-size:11px;font-weight:500;color:var(--gray-400);letter-spacing:0.8px;text-transform:uppercase;background:var(--gray-50);border-bottom:1px solid var(--gray-200);}
-.transacoes-table td{padding:13px 20px;font-size:13px;border-bottom:1px solid var(--gray-100);vertical-align:middle;}
+.transacoes-table th{padding:9px 18px;text-align:left;font-size:10px;font-weight:600;color:var(--gray-400);letter-spacing:.8px;text-transform:uppercase;background:var(--gray-50);border-bottom:1px solid var(--gray-200);}
+.transacoes-table td{padding:12px 18px;font-size:13px;border-bottom:1px solid var(--gray-100);vertical-align:middle;}
 .transacoes-table tr:last-child td{border-bottom:none;}
-.valor-positivo{color:var(--green);font-weight:600;}
-.valor-pendente{color:var(--amber);font-weight:600;}
-.valor-negativo{color:var(--red);font-weight:600;}
+.valor-positivo{color:var(--green);font-weight:600;font-family:'JetBrains Mono',monospace;}
+.valor-pendente{color:var(--amber);font-weight:600;font-family:'JetBrains Mono',monospace;}
 .pipeline-bar{display:flex;height:10px;border-radius:5px;overflow:hidden;gap:2px;margin-top:8px;}
 .pipeline-seg{height:100%;border-radius:3px;}
 
-/* RELATORIOS */
-.rel-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-.chart-container{padding:20px;}
-.bar-chart{display:flex;align-items:flex-end;gap:8px;height:140px;}
+/* RELATÓRIOS */
+.rel-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.bar-chart{display:flex;align-items:flex-end;gap:8px;height:130px;}
 .bar-wrap{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1;}
-.bar{border-radius:4px 4px 0 0;width:100%;transition:opacity 0.2s;}
-.bar:hover{opacity:0.8;}
-.bar-label{font-size:11px;color:var(--gray-400);text-align:center;}
+.bar{border-radius:4px 4px 0 0;width:100%;transition:opacity .2s;}
+.bar:hover{opacity:.8;}
+.bar-label{font-size:10px;color:var(--gray-400);text-align:center;}
 .bar-val{font-size:11px;font-weight:600;color:var(--gray-800);}
-.donut-wrap{display:flex;align-items:center;gap:20px;padding:20px;}
-.donut-legend{display:flex;flex-direction:column;gap:10px;}
-.legend-item{display:flex;align-items:center;gap:8px;font-size:13px;}
-.legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.donut-wrap{display:flex;align-items:center;gap:18px;padding:18px;}
+.donut-legend{display:flex;flex-direction:column;gap:9px;}
+.legend-item{display:flex;align-items:center;gap:7px;font-size:12px;}
+.legend-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
 
 /* MODAL */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(8,29,54,0.6);z-index:200;align-items:center;justify-content:center;padding:16px;}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:200;align-items:center;justify-content:center;padding:20px;}
 .modal-overlay.open{display:flex;}
-.modal{background:var(--white);border-radius:16px;width:100%;max-width:580px;max-height:90vh;overflow-y:auto;}
-.modal-header{padding:20px 24px 14px;border-bottom:1px solid var(--gray-100);display:flex;align-items:flex-start;justify-content:space-between;}
-.modal-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy);}
-.modal-phone{font-size:13px;color:var(--gray-600);margin-top:3px;}
-.modal-close{width:32px;height:32px;border-radius:50%;background:var(--gray-100);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;color:var(--gray-600);border:none;flex-shrink:0;}
-.modal-body{padding:18px 24px 20px;display:flex;flex-direction:column;gap:16px;}
-.ficha-section{background:var(--gray-50);border-radius:10px;padding:14px 16px;}
-.ficha-section-title{font-size:11px;font-weight:600;color:var(--gray-400);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;}
-.ficha-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.modal{background:var(--white);border-radius:16px;width:100%;max-width:520px;max-height:88vh;overflow-y:auto;display:flex;flex-direction:column;}
+.modal-header{padding:18px 22px 14px;border-bottom:1px solid var(--gray-100);display:flex;align-items:flex-start;justify-content:space-between;position:sticky;top:0;background:var(--white);z-index:1;}
+.modal-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--navy);}
+.modal-phone{font-size:12px;color:var(--gray-600);margin-top:3px;}
+.modal-close{background:none;border:none;font-size:22px;cursor:pointer;color:var(--gray-400);line-height:1;padding:2px 6px;}
+.modal-body{padding:18px 22px;flex:1;}
+.score-display{display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--gray-50);border-radius:10px;margin-bottom:14px;}
+.score-big{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;line-height:1;}
+.score-big.verde{color:var(--green);}
+.score-big.ouro{color:var(--amber);}
+.score-big.cinza{color:var(--gray-400);}
+.ficha-section{margin-bottom:14px;}
+.ficha-section-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--gray-400);margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid var(--gray-100);}
+.ficha-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
 .ficha-item{display:flex;flex-direction:column;gap:2px;}
-.ficha-label{font-size:11px;color:var(--gray-400);font-weight:500;}
+.ficha-label{font-size:10px;color:var(--gray-400);text-transform:uppercase;letter-spacing:.5px;}
 .ficha-value{font-size:13px;color:var(--gray-800);font-weight:500;}
 .ficha-value.highlight{color:var(--navy);font-weight:600;}
-.score-display{display:flex;align-items:center;gap:14px;}
-.score-big{font-family:'Playfair Display',serif;font-size:38px;font-weight:700;color:var(--green);line-height:1;}
-.modal-actions{display:flex;gap:8px;padding:0 24px 20px;flex-wrap:wrap;}
-.btn{flex:1;min-width:90px;padding:10px 8px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;}
+.modal-actions{display:flex;gap:8px;padding:0 22px 18px;flex-wrap:wrap;}
+.btn{flex:1;min-width:80px;padding:9px 8px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;border:none;font-family:'Inter',sans-serif;}
 .btn-primary{background:var(--navy);color:var(--white);}
 .btn-gold{background:var(--gold);color:var(--navy-dark);}
 .btn-outline{background:transparent;color:var(--navy);border:1px solid var(--gray-200);}
 
 /* BOTTOM NAV */
-.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--gray-200);z-index:100;height:60px;}
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--gray-200);z-index:100;height:58px;}
 .bottom-nav-inner{display:flex;height:100%;}
-.bottom-nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;color:var(--gray-400);font-size:10px;font-weight:500;border:none;background:none;}
+.bottom-nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;color:var(--gray-400);font-size:10px;font-weight:500;border:none;background:none;}
 .bottom-nav-item.active{color:var(--navy);}
-.bottom-nav-item svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.bottom-nav-item svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
 
 /* RESPONSIVE */
 @media(max-width:900px){
   .main-grid,.agenda-page-grid,.rel-grid{grid-template-columns:1fr;}
   .kpi-grid,.fin-grid{grid-template-columns:repeat(2,1fr);}
   .conv-layout{grid-template-columns:1fr;height:auto;}
-  .conv-list{max-height:300px;}
+  .conv-list{max-height:280px;}
 }
 @media(max-width:640px){
   .sidebar{transform:translateX(-100%);}
   .sidebar.open{transform:translateX(0);}
   .sidebar-overlay.open{display:block;}
-  .main{margin-left:0;padding-bottom:60px;}
+  .main{margin-left:0;padding-bottom:58px;}
   .hamburger{display:block;}
   .topbar-date{display:none;}
-  .page{padding:16px;}
+  .page{padding:14px;}
   .kpi-grid{grid-template-columns:repeat(2,1fr);gap:10px;}
-  .kpi-value{font-size:26px;}
-  .kpi-card{padding:14px 16px;}
+  .kpi-value{font-size:24px;}
+  .kpi-card{padding:13px 14px;}
   .leads-table{display:none;}
   .leads-cards{display:flex;}
   .bottom-nav{display:flex;}
-  .topbar{padding:0 16px;}
+  .topbar{padding:0 14px;}
   .fin-grid{grid-template-columns:1fr 1fr;}
   .clients-grid{grid-template-columns:1fr;}
+  .cap-scores{grid-template-columns:repeat(3,1fr);}
+  .ficha-grid{grid-template-columns:1fr;}
 }
 @media(max-width:380px){
   .kpi-grid,.fin-grid{grid-template-columns:1fr 1fr;}
   .modal-actions{flex-direction:column;}
-  .ficha-grid{grid-template-columns:1fr;}
 }
-svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+svg.icon{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
 </style>
 </head>
 <body>
@@ -310,7 +392,7 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;s
 
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-logo">
-    <div class="logo-title">Rex AI</div>
+    <div class="logo-title">Rex AI<span class="logo-v">v4</span></div>
     <div class="logo-sub">Corretor Digital</div>
   </div>
   <nav class="sidebar-nav">
@@ -320,7 +402,7 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;s
     </a>
     <a class="nav-item" onclick="showPage('conversas',this)" href="#">
       <svg class="nav-icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Conversas
-      <span style="margin-left:auto;background:rgba(212,160,23,0.2);color:var(--gold-light);font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600;">3</span>
+      <span class="nav-badge">3</span>
     </a>
     <a class="nav-item" onclick="showPage('agenda',this)" href="#">
       <svg class="nav-icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Agenda
@@ -328,7 +410,11 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;s
     <a class="nav-item" onclick="showPage('clientes',this)" href="#">
       <svg class="nav-icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Clientes
     </a>
-    <div class="nav-section" style="margin-top:8px;">Negócios</div>
+    <a class="nav-item" onclick="showPage('match',this)" href="#">
+      <svg class="nav-icon" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Match Engine
+      <span class="nav-badge" style="background:rgba(124,58,237,.2);color:#a78bfa;">Novo</span>
+    </a>
+    <div class="nav-section" style="margin-top:6px;">Negócios</div>
     <a class="nav-item" href="#">
       <svg class="nav-icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>Imóveis
     </a>
@@ -338,7 +424,10 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;s
     <a class="nav-item" onclick="showPage('relatorios',this)" href="#">
       <svg class="nav-icon" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Relatórios
     </a>
-    <div class="nav-section" style="margin-top:8px;">Sistema</div>
+    <a class="nav-item" onclick="showPage('captacao',this)" href="#">
+      <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Captações
+    </a>
+    <div class="nav-section" style="margin-top:6px;">Sistema</div>
     <a class="nav-item" href="#">
       <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M4.93 4.93l1.41 1.41M12 2v2M12 20v2M4.93 19.07l1.41-1.41M19.07 19.07l-1.41-1.41M2 12h2M20 12h2"/></svg>Configurações
     </a>
@@ -358,12 +447,12 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;s
   <div class="topbar">
     <div class="topbar-left">
       <button class="hamburger" onclick="toggleSidebar()">
-        <svg style="width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg style="width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
       <div class="topbar-title" id="page-title">Dashboard</div>
     </div>
     <div class="topbar-right">
-      <div class="topbar-date">Sexta, 6 jun 2026</div>
+      <div class="topbar-date">Segunda, 8 jun 2026</div>
       <div class="badge-notif">
         <svg class="icon" viewBox="0 0 24 24" style="color:var(--gray-600)"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg>
         <div class="badge-dot"></div>
@@ -371,8 +460,12 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;s
     </div>
   </div>
 
-  <!-- DASHBOARD -->
+  <!-- ═══════════════════════════════════════════
+       DASHBOARD
+  ════════════════════════════════════════════ -->
   <div class="page active" id="page-dashboard">
+
+    <!-- KPIs linha 1 -->
     <div class="kpi-grid">
       <div class="kpi-card">
         <div class="kpi-header"><span class="kpi-label">Leads hoje</span>
@@ -393,54 +486,377 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;s
           <div class="kpi-icon green"><svg class="icon" viewBox="0 0 24 24" style="color:var(--green)"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
         </div>
         <div class="kpi-value">4</div>
-        <div class="kpi-trend" style="color:var(--gray-400);">Esta semana</div>
+        <div class="kpi-trend trend-neutral">Esta semana</div>
       </div>
-      <div class="kpi-card">
-        <div class="kpi-header"><span class="kpi-label">Em negociação</span>
+      <div class="kpi-card" style="border-color:rgba(183,119,13,.3);background:linear-gradient(135deg,#fff 80%,var(--amber-pale));">
+        <div class="kpi-header"><span class="kpi-label">Volume em negociação</span>
           <div class="kpi-icon amber"><svg class="icon" viewBox="0 0 24 24" style="color:var(--amber)"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
         </div>
-        <div class="kpi-value">3</div>
-        <div class="kpi-trend" style="color:var(--amber);">R$ 1,2M</div>
+        <div class="kpi-value" style="font-size:20px;">R$ 1,2M</div>
+        <div style="margin-top:4px;padding:5px 9px;background:var(--amber-pale);border-radius:6px;display:inline-block;">
+          <div style="font-size:9px;color:var(--amber);font-weight:700;text-transform:uppercase;letter-spacing:.5px;">Comissão estimada</div>
+          <div style="font-size:16px;font-family:'Playfair Display',serif;font-weight:700;color:var(--amber);">R$ 36.000</div>
+        </div>
       </div>
     </div>
+
+    <!-- KPIs financeiros -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
+      <div class="kpi-card" style="background:var(--navy-dark);border-color:rgba(212,160,23,.2);">
+        <div class="kpi-header"><span class="kpi-label" style="color:rgba(255,255,255,.4);">Comissões recebidas</span>
+          <div class="kpi-icon" style="background:rgba(212,160,23,.15);"><svg class="icon" viewBox="0 0 24 24" style="color:var(--gold)"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+        </div>
+        <div class="kpi-value" style="color:var(--gold);font-size:20px;">R$ 18.500</div>
+        <div class="kpi-trend" style="color:rgba(255,255,255,.3);">↑ +12% vs mês anterior</div>
+      </div>
+      <div class="kpi-card" style="background:var(--navy-dark);border-color:rgba(212,160,23,.2);">
+        <div class="kpi-header"><span class="kpi-label" style="color:rgba(255,255,255,.4);">A receber este mês</span>
+          <div class="kpi-icon" style="background:rgba(212,160,23,.15);"><svg class="icon" viewBox="0 0 24 24" style="color:var(--gold)"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
+        </div>
+        <div class="kpi-value" style="color:var(--gold-light);font-size:20px;">R$ 36.000</div>
+        <div class="kpi-trend" style="color:rgba(255,255,255,.3);">3 contratos em andamento</div>
+      </div>
+      <div class="kpi-card" style="background:var(--navy-dark);border-color:rgba(212,160,23,.2);">
+        <div class="kpi-header"><span class="kpi-label" style="color:rgba(255,255,255,.4);">Meta do mês</span>
+          <div class="kpi-icon" style="background:rgba(26,120,74,.25);"><svg class="icon" viewBox="0 0 24 24" style="color:var(--green)"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg></div>
+        </div>
+        <div class="kpi-value" style="color:var(--green);font-size:20px;">74%</div>
+        <div style="margin-top:3px;height:4px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden;"><div style="width:74%;height:100%;background:var(--green);border-radius:2px;"></div></div>
+        <div class="kpi-trend" style="color:rgba(255,255,255,.3);margin-top:3px;">R$ 18.500 de R$ 25.000</div>
+      </div>
+    </div>
+
     <div class="main-grid">
+      <!-- LEADS RECENTES -->
       <div class="section-card">
-        <div class="section-header"><span class="section-title">Leads recentes</span><span class="section-action" onclick="showPage('clientes',null)">Ver todos →</span></div>
+        <div class="section-header">
+          <span class="section-title">Leads recentes</span>
+          <span class="section-action" onclick="showPage('clientes',null)">Ver todos →</span>
+        </div>
         <table class="leads-table">
-          <thead><tr><th>Cliente</th><th>Objetivo</th><th>Faixa de valor</th><th>Score</th><th>Status</th></tr></thead>
+          <thead><tr><th>Cliente</th><th>Objetivo</th><th>Score Rex</th><th>Prioridade</th><th>Status</th></tr></thead>
           <tbody>
-            <tr onclick="openModal('joao')"><td><div class="lead-name">João da Silva</div><div class="lead-phone">(51) 99123-4567</div></td><td><span class="objective-badge obj-comprar">Comprar</span></td><td>R$ 400–700k</td><td><div class="score-bar"><div class="score-track"><div class="score-fill high" style="width:82%"></div></div><span class="score-num">82</span></div></td><td><span class="status-pill status-qualificado">✓ Qualificado</span></td></tr>
-            <tr onclick="openModal('maria')"><td><div class="lead-name">Maria Fernanda</div><div class="lead-phone">(51) 98765-4321</div></td><td><span class="objective-badge obj-alugar">Alugar</span></td><td>Até R$ 3k/mês</td><td><div class="score-bar"><div class="score-track"><div class="score-fill medium" style="width:65%"></div></div><span class="score-num">65</span></div></td><td><span class="status-pill status-qualificando">⏳ Qualificando</span></td></tr>
-            <tr><td><div class="lead-name">Roberto Alves</div><div class="lead-phone">(51) 99234-5678</div></td><td><span class="objective-badge obj-vender">Vender</span></td><td>R$ 550k</td><td><div class="score-bar"><div class="score-track"><div class="score-fill high" style="width:90%"></div></div><span class="score-num">90</span></div></td><td><span class="status-pill status-transferido">↗ Transferido</span></td></tr>
-            <tr><td><div class="lead-name">Ana Paula Costa</div><div class="lead-phone">(51) 98344-1234</div></td><td><span class="objective-badge obj-comprar">Comprar</span></td><td>R$ 200–400k</td><td><div class="score-bar"><div class="score-track"><div class="score-fill low" style="width:35%"></div></div><span class="score-num">35</span></div></td><td><span class="status-pill status-novo">● Novo</span></td></tr>
-            <tr><td><div class="lead-name">Pedro Henrique</div><div class="lead-phone">(51) 99456-7890</div></td><td><span class="objective-badge obj-comprar">Comprar</span></td><td>Acima R$ 700k</td><td><div class="score-bar"><div class="score-track"><div class="score-fill high" style="width:75%"></div></div><span class="score-num">75</span></div></td><td><span class="status-pill status-qualificado">✓ Qualificado</span></td></tr>
+            <tr onclick="openModal('joao')">
+              <td><div class="lead-name">João da Silva</div><div class="lead-phone">(51) 99123-4567</div></td>
+              <td><span class="objective-badge obj-comprar">Comprar</span></td>
+              <td>
+                <div class="score-bar"><div class="score-track"><div class="score-fill high" style="width:80%"></div></div><span class="score-num">80</span></div>
+                <div class="score-triplo" style="margin-top:6px;">
+                  <div class="score-ind"><div class="score-ind-label">Intenção<span>67</span></div><div class="score-ind-bar"><div class="score-ind-fill fill-green" style="width:67%"></div></div></div>
+                  <div class="score-ind"><div class="score-ind-label">Capacidade<span>74</span></div><div class="score-ind-bar"><div class="score-ind-fill fill-gold" style="width:74%"></div></div></div>
+                  <div class="score-ind"><div class="score-ind-label">Compat.<span>85</span></div><div class="score-ind-bar"><div class="score-ind-fill fill-green" style="width:85%"></div></div></div>
+                </div>
+              </td>
+              <td><span class="badge-prio prio-visita">🟡 Agendar visita</span></td>
+              <td><span class="status-pill status-qualificado">✓ Qualificado</span></td>
+            </tr>
+            <tr onclick="openModal('maria')">
+              <td><div class="lead-name">Maria Fernanda</div><div class="lead-phone">(51) 98765-4321</div></td>
+              <td><span class="objective-badge obj-alugar">Alugar</span></td>
+              <td>
+                <div class="score-bar"><div class="score-track"><div class="score-fill medium" style="width:65%"></div></div><span class="score-num">65</span></div>
+                <div class="score-triplo" style="margin-top:6px;">
+                  <div class="score-ind"><div class="score-ind-label">Intenção<span>49</span></div><div class="score-ind-bar"><div class="score-ind-fill fill-gold" style="width:49%"></div></div></div>
+                  <div class="score-ind"><div class="score-ind-label">Capacidade<span>52</span></div><div class="score-ind-bar"><div class="score-ind-fill fill-gold" style="width:52%"></div></div></div>
+                  <div class="score-ind"><div class="score-ind-label">Compat.<span>73</span></div><div class="score-ind-bar"><div class="score-ind-fill fill-green" style="width:73%"></div></div></div>
+                </div>
+              </td>
+              <td><span class="badge-prio prio-nutrir">🟢 Nutrir</span></td>
+              <td><span class="status-pill status-qualificando">⏳ Qualificando</span></td>
+            </tr>
+            <tr>
+              <td><div class="lead-name">Roberto Alves</div><div class="lead-phone">(51) 99234-5678</div></td>
+              <td><span class="objective-badge obj-vender">Vender</span></td>
+              <td><div class="score-bar"><div class="score-track"><div class="score-fill high" style="width:90%"></div></div><span class="score-num">—</span></div><div style="font-size:10px;color:var(--purple);margin-top:3px;">Potencial de Captação</div></td>
+              <td><span class="badge-prio" style="background:var(--purple-pale);border:1px solid rgba(124,58,237,.25);color:var(--purple);">🏆 Premium</span></td>
+              <td><span class="status-pill status-transferido">↗ Transferido</span></td>
+            </tr>
+            <tr>
+              <td><div class="lead-name">Ana Paula Costa</div><div class="lead-phone">(51) 98344-1234</div></td>
+              <td><span class="objective-badge obj-comprar">Comprar</span></td>
+              <td>
+                <div class="score-bar"><div class="score-track"><div class="score-fill low" style="width:35%"></div></div><span class="score-num">35</span></div>
+              </td>
+              <td><span class="badge-prio prio-arquivar">⚫ Arquivar</span></td>
+              <td><span class="status-pill status-novo">● Novo</span></td>
+            </tr>
+            <tr>
+              <td><div class="lead-name">Pedro Henrique</div><div class="lead-phone">(51) 99456-7890</div></td>
+              <td><span class="objective-badge obj-comprar">Comprar</span></td>
+              <td>
+                <div class="score-bar"><div class="score-track"><div class="score-fill high" style="width:75%"></div></div><span class="score-num">75</span></div>
+              </td>
+              <td><span class="badge-prio prio-ligar">🔴 Ligar agora</span></td>
+              <td><span class="status-pill status-qualificado">✓ Qualificado</span></td>
+            </tr>
           </tbody>
         </table>
+        <!-- Mobile cards -->
         <div class="leads-cards">
-          <div class="lead-card" onclick="openModal('joao')"><div class="lead-card-top"><div><div class="lead-name">João da Silva</div><div class="lead-phone">(51) 99123-4567</div></div><span class="status-pill status-qualificado">✓ Qualificado</span></div><div class="lead-card-bottom"><span class="objective-badge obj-comprar">Comprar</span><span style="font-size:12px;color:var(--gray-600)">R$ 400–700k</span><div class="score-bar"><div class="score-track"><div class="score-fill high" style="width:82%"></div></div><span class="score-num">82</span></div></div></div>
-          <div class="lead-card" onclick="openModal('maria')"><div class="lead-card-top"><div><div class="lead-name">Maria Fernanda</div><div class="lead-phone">(51) 98765-4321</div></div><span class="status-pill status-qualificando">⏳ Qualificando</span></div><div class="lead-card-bottom"><span class="objective-badge obj-alugar">Alugar</span><span style="font-size:12px;color:var(--gray-600)">Até R$ 3k/mês</span><div class="score-bar"><div class="score-track"><div class="score-fill medium" style="width:65%"></div></div><span class="score-num">65</span></div></div></div>
-          <div class="lead-card"><div class="lead-card-top"><div><div class="lead-name">Roberto Alves</div><div class="lead-phone">(51) 99234-5678</div></div><span class="status-pill status-transferido">↗ Transferido</span></div><div class="lead-card-bottom"><span class="objective-badge obj-vender">Vender</span><span style="font-size:12px;color:var(--gray-600)">R$ 550k</span><div class="score-bar"><div class="score-track"><div class="score-fill high" style="width:90%"></div></div><span class="score-num">90</span></div></div></div>
+          <div class="lead-card" onclick="openModal('joao')">
+            <div class="lead-card-top"><div><div class="lead-name">João da Silva</div><div class="lead-phone">(51) 99123-4567</div></div><span class="status-pill status-qualificado">✓ Qualificado</span></div>
+            <div class="lead-card-bottom"><span class="objective-badge obj-comprar">Comprar</span><span class="badge-prio prio-visita">🟡 Agendar visita</span><div class="score-bar"><div class="score-track"><div class="score-fill high" style="width:80%"></div></div><span class="score-num">80</span></div></div>
+          </div>
+          <div class="lead-card" onclick="openModal('maria')">
+            <div class="lead-card-top"><div><div class="lead-name">Maria Fernanda</div><div class="lead-phone">(51) 98765-4321</div></div><span class="status-pill status-qualificando">⏳ Qualificando</span></div>
+            <div class="lead-card-bottom"><span class="objective-badge obj-alugar">Alugar</span><span class="badge-prio prio-nutrir">🟢 Nutrir</span><div class="score-bar"><div class="score-track"><div class="score-fill medium" style="width:65%"></div></div><span class="score-num">65</span></div></div>
+          </div>
+          <div class="lead-card">
+            <div class="lead-card-top"><div><div class="lead-name">Roberto Alves</div><div class="lead-phone">(51) 99234-5678</div></div><span class="status-pill status-transferido">↗ Transferido</span></div>
+            <div class="lead-card-bottom"><span class="objective-badge obj-vender">Vender</span><span class="badge-prio" style="background:var(--purple-pale);border:1px solid rgba(124,58,237,.25);color:var(--purple);">🏆 Premium</span></div>
+          </div>
         </div>
       </div>
+
+      <!-- RIGHT COL -->
       <div class="right-col">
-        <div class="section-card">
-          <div class="section-header"><span class="section-title">Agenda do dia</span><span class="section-action" onclick="showPage('agenda',null)">Ver tudo →</span></div>
-          <div class="agenda-item"><div class="agenda-time">09:00</div><div class="agenda-dot dot-navy"></div><div><div class="agenda-text">Visita — Apto Centro</div><div class="agenda-sub">João da Silva · R$ 480k</div></div></div>
-          <div class="agenda-item"><div class="agenda-time">11:30</div><div class="agenda-dot dot-gold"></div><div><div class="agenda-text">Reunião construtora</div><div class="agenda-sub">Lançamento Bairro Novo</div></div></div>
-          <div class="agenda-item"><div class="agenda-time">14:00</div><div class="agenda-dot dot-navy"></div><div><div class="agenda-text">Visita — Casa Menino Deus</div><div class="agenda-sub">Pedro Henrique · R$ 750k</div></div></div>
-          <div class="agenda-item"><div class="agenda-time">17:00</div><div class="agenda-dot dot-green"></div><div><div class="agenda-text">Assinatura contrato</div><div class="agenda-sub">Roberto Alves</div></div></div>
+        <!-- REX SUGERE -->
+        <div class="section-card" style="background:var(--navy-dark);border-color:rgba(212,160,23,.15);">
+          <div class="rex-header">
+            <span class="rex-title">Rex Sugere</span>
+            <span class="rex-badge">IA Ativa</span>
+          </div>
+          <div class="rex-insight">
+            <div class="rex-insight-icon ri-urgent">🔴</div>
+            <div><div class="rex-insight-text"><strong>Pedro Henrique</strong> tem score 75 e está há 8 dias sem contato. Janela de oportunidade fechando.</div><span class="rex-action">→ Ligar agora</span></div>
+          </div>
+          <div class="rex-insight">
+            <div class="rex-insight-icon ri-match">🔗</div>
+            <div><div class="rex-insight-text"><strong>Match detectado:</strong> João da Silva (score 80) x Apt. Menino Deus captado hoje.</div><span class="rex-action" onclick="showPage('match',null)">→ Ver match</span></div>
+          </div>
+          <div class="rex-insight">
+            <div class="rex-insight-icon ri-hot">🏆</div>
+            <div><div class="rex-insight-text"><strong>Roberto Alves</strong> quer vender — Potencial de Captação Premium. Exclusividade disponível.</div><span class="rex-action">→ Captar agora</span></div>
+          </div>
+          <div class="rex-insight">
+            <div class="rex-insight-icon ri-follow">📅</div>
+            <div><div class="rex-insight-text"><strong>4 visitas</strong> esta semana. Taxa de conversão atual: 75% visita → proposta.</div><span class="rex-action">→ Ver agenda</span></div>
+          </div>
         </div>
-        <div class="section-card" style="background:var(--navy-dark);border-color:rgba(255,255,255,0.08);">
-          <div class="rex-header"><span class="rex-title">Rex sugere</span><span class="rex-badge">IA ativa</span></div>
-          <div class="rex-insight"><div class="rex-insight-icon ri-urgent"><svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:none;stroke:#E74C3C;stroke-width:2;stroke-linecap:round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div><div class="rex-insight-text"><strong>Ana Paula</strong> visualizou o imóvel da Rua das Flores 5 vezes nos últimos 3 dias.</div><div class="rex-action">Contatar agora →</div></div></div>
-          <div class="rex-insight"><div class="rex-insight-icon ri-hot"><svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round"><path d="M12 2c0 6-8 8-8 14a8 8 0 0016 0c0-6-8-8-8-14z"/></svg></div><div><div class="rex-insight-text"><strong>3 leads</strong> com score acima de 70 sem retorno há 7+ dias.</div><div class="rex-action">Ver lista →</div></div></div>
-          <div class="rex-insight"><div class="rex-insight-icon ri-follow"><svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:none;stroke:var(--gold-light);stroke-width:2;stroke-linecap:round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><div><div class="rex-insight-text"><strong>Aptos 2 quartos</strong> são os mais buscados esta semana (5 leads).</div><div class="rex-action">Ver análise →</div></div></div>
+
+        <!-- AGENDA HOJE -->
+        <div class="section-card">
+          <div class="section-header"><span class="section-title">Agenda de hoje</span><span class="section-action" onclick="showPage('agenda',null)">Ver tudo →</span></div>
+          <div class="agenda-item"><div class="agenda-time">09:00</div><div class="agenda-dot dot-navy"></div><div><div class="agenda-text">Visita — Apto Centro</div><div class="agenda-sub">João da Silva</div></div></div>
+          <div class="agenda-item"><div class="agenda-time">11:30</div><div class="agenda-dot dot-gold"></div><div><div class="agenda-text">Reunião construtora</div><div class="agenda-sub">Bairro Novo</div></div></div>
+          <div class="agenda-item"><div class="agenda-time">14:00</div><div class="agenda-dot dot-navy"></div><div><div class="agenda-text">Visita — Casa Menino Deus</div><div class="agenda-sub">Pedro Henrique</div></div></div>
+          <div class="agenda-item"><div class="agenda-time">17:00</div><div class="agenda-dot dot-green"></div><div><div class="agenda-text">Assinatura contrato</div><div class="agenda-sub">Roberto Alves</div></div></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- CONVERSAS -->
+  <!-- ═══════════════════════════════════════════
+       MATCH ENGINE
+  ════════════════════════════════════════════ -->
+  <div class="page" id="page-match">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
+
+      <!-- COMPRADOR → IMÓVEIS -->
+      <div class="section-card">
+        <div class="section-header">
+          <span class="section-title">Comprador → Imóveis</span>
+          <span style="font-size:11px;color:var(--gray-400);">João da Silva · Score 80</span>
+        </div>
+        <div class="match-card">
+          <div class="match-score-circle match-score-high">91</div>
+          <div class="match-info">
+            <div class="match-name">Apto 3q · Menino Deus</div>
+            <div class="match-detail">Porto Alegre · R$ 620.000 · Exclusividade total</div>
+            <div class="match-fits">
+              <span class="fit-tag fit-ok">✓ Bairro</span>
+              <span class="fit-tag fit-ok">✓ Tipo</span>
+              <span class="fit-tag fit-ok">✓ Valor</span>
+              <span class="fit-tag fit-ok">✓ Financiamento</span>
+            </div>
+          </div>
+          <span class="match-action">→ Enviar</span>
+        </div>
+        <div class="match-card">
+          <div class="match-score-circle match-score-high">78</div>
+          <div class="match-info">
+            <div class="match-name">Casa 3q · Petrópolis</div>
+            <div class="match-detail">Porto Alegre · R$ 580.000 · Preferência</div>
+            <div class="match-fits">
+              <span class="fit-tag fit-ok">✓ Bairro</span>
+              <span class="fit-tag fit-partial">~ Tipo</span>
+              <span class="fit-tag fit-ok">✓ Valor</span>
+            </div>
+          </div>
+          <span class="match-action">→ Enviar</span>
+        </div>
+        <div class="match-card">
+          <div class="match-score-circle match-score-mid">65</div>
+          <div class="match-info">
+            <div class="match-name">Apto 2q · Moinhos de Vento</div>
+            <div class="match-detail">Porto Alegre · R$ 690.000 · Sem exclusividade</div>
+            <div class="match-fits">
+              <span class="fit-tag fit-ok">✓ Bairro</span>
+              <span class="fit-tag fit-ok">✓ Tipo</span>
+              <span class="fit-tag fit-partial">~ Valor</span>
+            </div>
+          </div>
+          <span class="match-action">→ Enviar</span>
+        </div>
+      </div>
+
+      <!-- IMÓVEL → COMPRADORES -->
+      <div class="section-card">
+        <div class="section-header">
+          <span class="section-title">Imóvel → Compradores</span>
+          <span style="font-size:11px;color:var(--gray-400);">Apto 3q · Menino Deus</span>
+        </div>
+        <div class="match-card">
+          <div class="match-score-circle match-score-high">91</div>
+          <div class="match-info">
+            <div class="match-name">João da Silva</div>
+            <div class="match-detail">Score 80 · Financiamento aprovado · Porto Alegre</div>
+            <div class="match-fits">
+              <span class="fit-tag fit-ok">✓ Localização</span>
+              <span class="fit-tag fit-ok">✓ Financeiro</span>
+              <span class="fit-tag fit-ok">✓ Quartos</span>
+            </div>
+          </div>
+          <span class="match-action">→ Contatar</span>
+        </div>
+        <div class="match-card">
+          <div class="match-score-circle match-score-high">78</div>
+          <div class="match-info">
+            <div class="match-name">Pedro Henrique</div>
+            <div class="match-detail">Score 75 · À vista · Porto Alegre</div>
+            <div class="match-fits">
+              <span class="fit-tag fit-ok">✓ Localização</span>
+              <span class="fit-tag fit-ok">✓ Valor</span>
+              <span class="fit-tag fit-partial">~ Quartos</span>
+            </div>
+          </div>
+          <span class="match-action">→ Contatar</span>
+        </div>
+        <div class="match-card">
+          <div class="match-score-circle match-score-mid">62</div>
+          <div class="match-info">
+            <div class="match-name">Ana Paula Costa</div>
+            <div class="match-detail">Score 35 · Financiamento · Porto Alegre</div>
+            <div class="match-fits">
+              <span class="fit-tag fit-ok">✓ Localização</span>
+              <span class="fit-tag fit-partial">~ Valor</span>
+            </div>
+          </div>
+          <span class="match-action">→ Contatar</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOTIVOS DO MATCH -->
+    <div class="section-card">
+      <div class="section-header"><span class="section-title">Análise do Match — João da Silva × Apto Menino Deus</span></div>
+      <div style="padding:16px 20px;display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div>
+          <div class="motivos-pos">✅ Fatores positivos</div>
+          <div class="motivo-item"><span>✅</span><span>Bairro exato coincide — Menino Deus</span></div>
+          <div class="motivo-item"><span>✅</span><span>Financiamento aprovado — sem risco bancário</span></div>
+          <div class="motivo-item"><span>✅</span><span>Faixa de valor compatível — R$ 620k dentro de R$ 400–700k</span></div>
+          <div class="motivo-item"><span>✅</span><span>Tipo de imóvel — Apartamento</span></div>
+          <div class="motivo-item"><span>✅</span><span>Imóvel com exclusividade total — segurança de comissão</span></div>
+        </div>
+        <div>
+          <div class="motivos-neg">⚠️ Pontos de atenção</div>
+          <div class="motivo-item"><span>⚠️</span><span>Comprador ainda não visitou nenhum imóvel</span></div>
+          <div class="motivo-item"><span>⚠️</span><span>Decisão a confirmar com cônjuge</span></div>
+          <div class="motivo-item"><span>⚠️</span><span>8 dias sem contato — score em decaimento</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       CAPTAÇÕES (Rex Captação)
+  ════════════════════════════════════════════ -->
+  <div class="page" id="page-captacao">
+    <div class="kpi-grid" style="grid-template-columns:repeat(4,1fr);">
+      <div class="kpi-card"><div class="kpi-header"><span class="kpi-label">Imóveis captados</span><div class="kpi-icon navy"><svg class="icon" viewBox="0 0 24 24" style="color:var(--navy)"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div></div><div class="kpi-value">8</div><div class="kpi-trend trend-up">↑ +2 esta semana</div></div>
+      <div class="kpi-card"><div class="kpi-header"><span class="kpi-label">Com exclusividade</span><div class="kpi-icon green"><svg class="icon" viewBox="0 0 24 24" style="color:var(--green)"><polyline points="20 6 9 17 4 12"/></svg></div></div><div class="kpi-value">5</div><div class="kpi-trend trend-up">62% da carteira</div></div>
+      <div class="kpi-card"><div class="kpi-header"><span class="kpi-label">Ticket potencial</span><div class="kpi-icon amber"><svg class="icon" viewBox="0 0 24 24" style="color:var(--amber)"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div></div><div class="kpi-value" style="font-size:20px;">R$ 142k</div><div class="kpi-trend trend-neutral">comissões estimadas</div></div>
+      <div class="kpi-card"><div class="kpi-header"><span class="kpi-label">ILC médio</span><div class="kpi-icon purple"><svg class="icon" viewBox="0 0 24 24" style="color:var(--purple)"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div></div><div class="kpi-value" style="color:var(--purple);">72</div><div class="kpi-trend" style="color:var(--purple);opacity:.7;">Liquidez Alta</div></div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-header"><span class="section-title">Imóveis na carteira</span></div>
+
+      <div class="cap-card-inner">
+        <div class="cap-header">
+          <div><div class="cap-imovel">Apto 3q · Menino Deus</div><div class="cap-loc">Porto Alegre · R$ 620.000 · Roberto Alves</div></div>
+          <span class="cap-badge cap-premium">🏆 Premium</span>
+        </div>
+        <div class="cap-scores">
+          <div class="cap-score-item"><div class="cap-score-label">Atratividade</div><div class="cap-score-val">82</div></div>
+          <div class="cap-score-item"><div class="cap-score-label">Facilidade</div><div class="cap-score-val">74</div></div>
+          <div class="cap-score-item"><div class="cap-score-label">Qualidade</div><div class="cap-score-val">88</div></div>
+        </div>
+        <div class="cap-ilc">
+          <span class="cap-ilc-label">ILC</span>
+          <div class="cap-ilc-bar"><div class="cap-ilc-fill" style="width:87%;background:var(--green);"></div></div>
+          <span class="cap-ilc-val">87</span>
+        </div>
+        <div class="cap-probs">
+          <div class="cap-prob"><div class="cap-prob-dias">90 dias</div><div class="cap-prob-val">76%</div></div>
+          <div class="cap-prob"><div class="cap-prob-dias">180 dias</div><div class="cap-prob-val">91%</div></div>
+        </div>
+        <div class="cap-ticket"><span class="cap-ticket-label">Comissão estimada (6%)</span><span class="cap-ticket-val">R$ 37.200</span></div>
+        <div class="cap-fit">🏠 <strong>5 compradores ativos</strong> na carteira com perfil semelhante a este imóvel.</div>
+      </div>
+
+      <div class="cap-card-inner">
+        <div class="cap-header">
+          <div><div class="cap-imovel">Casa 4q · Ipanema</div><div class="cap-loc">Porto Alegre · R$ 980.000 · Marcos Ribeiro</div></div>
+          <span class="cap-badge cap-estrategica">🟢 Estratégica</span>
+        </div>
+        <div class="cap-scores">
+          <div class="cap-score-item"><div class="cap-score-label">Atratividade</div><div class="cap-score-val">68</div></div>
+          <div class="cap-score-item"><div class="cap-score-label">Facilidade</div><div class="cap-score-val">71</div></div>
+          <div class="cap-score-item"><div class="cap-score-label">Qualidade</div><div class="cap-score-val">65</div></div>
+        </div>
+        <div class="cap-ilc">
+          <span class="cap-ilc-label">ILC</span>
+          <div class="cap-ilc-bar"><div class="cap-ilc-fill" style="width:68%;background:var(--gold);"></div></div>
+          <span class="cap-ilc-val">68</span>
+        </div>
+        <div class="cap-probs">
+          <div class="cap-prob"><div class="cap-prob-dias">90 dias</div><div class="cap-prob-val">42%</div></div>
+          <div class="cap-prob"><div class="cap-prob-dias">180 dias</div><div class="cap-prob-val">71%</div></div>
+        </div>
+        <div class="cap-ticket"><span class="cap-ticket-label">Comissão estimada (6%)</span><span class="cap-ticket-val">R$ 58.800</span></div>
+        <div class="cap-fit">🏠 <strong>3 compradores ativos</strong> na carteira com perfil semelhante a este imóvel.</div>
+      </div>
+
+      <div class="cap-card-inner">
+        <div class="cap-header">
+          <div><div class="cap-imovel">Terreno · Jardim Botânico</div><div class="cap-loc">Porto Alegre · R$ 380.000 · Sílvia Duarte</div></div>
+          <span class="cap-badge cap-regular">🟡 Regular</span>
+        </div>
+        <div class="cap-scores">
+          <div class="cap-score-item"><div class="cap-score-label">Atratividade</div><div class="cap-score-val">48</div></div>
+          <div class="cap-score-item"><div class="cap-score-label">Facilidade</div><div class="cap-score-val">42</div></div>
+          <div class="cap-score-item"><div class="cap-score-label">Qualidade</div><div class="cap-score-val">55</div></div>
+        </div>
+        <div class="cap-ilc">
+          <span class="cap-ilc-label">ILC</span>
+          <div class="cap-ilc-bar"><div class="cap-ilc-fill" style="width:47%;background:var(--amber);"></div></div>
+          <span class="cap-ilc-val">47</span>
+        </div>
+        <div class="cap-probs">
+          <div class="cap-prob"><div class="cap-prob-dias">90 dias</div><div class="cap-prob-val">18%</div></div>
+          <div class="cap-prob"><div class="cap-prob-dias">180 dias</div><div class="cap-prob-val">29%</div></div>
+        </div>
+        <div class="cap-ticket"><span class="cap-ticket-label">Comissão estimada (6%)</span><span class="cap-ticket-val">R$ 22.800</span></div>
+        <div class="cap-fit">🏠 <strong>2 compradores ativos</strong> na carteira com perfil semelhante a este imóvel.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       CONVERSAS
+  ════════════════════════════════════════════ -->
   <div class="page" id="page-conversas">
     <div class="conv-layout section-card">
       <div class="conv-list">
@@ -448,161 +864,69 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;s
         <div class="conv-item active" onclick="selectConv(this,'joao')">
           <div class="conv-avatar av-blue">JS</div>
           <div class="conv-info"><div class="conv-name">João da Silva</div><div class="conv-preview">Sim, posso ir amanhã às 9h!</div></div>
-          <div class="conv-meta"><div class="conv-time">09:42</div></div>
+          <div class="conv-meta"><div class="conv-time">09:14</div><div class="conv-unread">2</div></div>
         </div>
         <div class="conv-item" onclick="selectConv(this,'maria')">
           <div class="conv-avatar av-gold">MF</div>
-          <div class="conv-info"><div class="conv-name">Maria Fernanda</div><div class="conv-preview">Rex: Ótimo! Vou verificar as opções</div></div>
-          <div class="conv-meta"><div class="conv-time">08:15</div><div class="conv-unread">2</div></div>
+          <div class="conv-info"><div class="conv-name">Maria Fernanda</div><div class="conv-preview">Vou verificar as opções...</div></div>
+          <div class="conv-meta"><div class="conv-time">08:32</div><div class="conv-unread">1</div></div>
         </div>
         <div class="conv-item" onclick="selectConv(this,'ana')">
           <div class="conv-avatar av-green">AP</div>
-          <div class="conv-info"><div class="conv-name">Ana Paula Costa</div><div class="conv-preview">Quero ver o apartamento do Centro</div></div>
-          <div class="conv-meta"><div class="conv-time">Ontem</div><div class="conv-unread">1</div></div>
+          <div class="conv-info"><div class="conv-name">Ana Paula Costa</div><div class="conv-preview">Quero ver o apartamento...</div></div>
+          <div class="conv-meta"><div class="conv-time">Seg</div></div>
         </div>
         <div class="conv-item" onclick="selectConv(this,'pedro')">
           <div class="conv-avatar av-blue">PH</div>
-          <div class="conv-info"><div class="conv-name">Pedro Henrique</div><div class="conv-preview">Rex: Perfeito! Até sexta então.</div></div>
-          <div class="conv-meta"><div class="conv-time">Ontem</div></div>
+          <div class="conv-info"><div class="conv-name">Pedro Henrique</div><div class="conv-preview">Perfeito! Até sexta então.</div></div>
+          <div class="conv-meta"><div class="conv-time">Sex</div></div>
         </div>
         <div class="conv-item" onclick="selectConv(this,'roberto')">
           <div class="conv-avatar av-gold">RA</div>
-          <div class="conv-info"><div class="conv-name">Roberto Alves</div><div class="conv-preview">Pode preparar o contrato</div></div>
-          <div class="conv-meta"><div class="conv-time">Ter</div></div>
+          <div class="conv-info"><div class="conv-name">Roberto Alves</div><div class="conv-preview">Fico no Bom Fim...</div></div>
+          <div class="conv-meta"><div class="conv-time">Qui</div></div>
         </div>
       </div>
       <div class="chat-area" id="chat-area">
         <div class="chat-header">
-          <div class="conv-avatar av-blue" style="width:34px;height:34px;font-size:12px;">JS</div>
-          <div><div style="font-size:14px;font-weight:500;color:var(--navy);">João da Silva</div><div style="font-size:12px;color:var(--green);">● Online agora</div></div>
+          <div class="conv-avatar av-blue" style="width:32px;height:32px;font-size:11px;">JS</div>
+          <div><div style="font-size:13px;font-weight:500;color:var(--navy);">João da Silva</div><div style="font-size:11px;color:var(--green);">● Online agora</div></div>
         </div>
         <div class="chat-msgs" id="chat-msgs"></div>
         <div class="chat-input">
-          <input type="text" placeholder="Digite uma mensagem..." id="chat-input-field">
+          <input type="text" id="chat-input-field" placeholder="Digite uma mensagem...">
           <button class="chat-send" onclick="sendMsg()">
-            <svg style="width:16px;height:16px;fill:none;stroke:white;stroke-width:2;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            <svg style="width:14px;height:14px;fill:none;stroke:#fff;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
           </button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- CLIENTES -->
-  <div class="page" id="page-clientes">
-    <div style="display:flex;align-items:center;justify-content:space-between;">
-      <div style="font-size:13px;color:var(--gray-600);">5 clientes cadastrados</div>
-      <div style="display:flex;gap:8px;">
-        <select style="padding:7px 12px;border:1px solid var(--gray-200);border-radius:8px;font-size:13px;font-family:'DM Sans',sans-serif;background:var(--white);color:var(--gray-800);outline:none;">
-          <option>Todos os status</option>
-          <option>Qualificado</option>
-          <option>Qualificando</option>
-          <option>Novo</option>
-        </select>
-        <select style="padding:7px 12px;border:1px solid var(--gray-200);border-radius:8px;font-size:13px;font-family:'DM Sans',sans-serif;background:var(--white);color:var(--gray-800);outline:none;">
-          <option>Todos os objetivos</option>
-          <option>Comprar</option>
-          <option>Vender</option>
-          <option>Alugar</option>
-        </select>
-      </div>
-    </div>
-    <div class="clients-grid">
-      <div class="client-card" onclick="openModal('joao')">
-        <div class="client-card-top"><div class="client-avatar av-blue" style="background:rgba(15,45,82,0.12);color:var(--navy);">JS</div><div><div class="client-name">João da Silva</div><div class="client-phone">(51) 99123-4567</div></div></div>
-        <div class="client-details">
-          <div class="client-detail-row"><span class="client-detail-label">Objetivo</span><span class="client-detail-value">Comprar apt.</span></div>
-          <div class="client-detail-row"><span class="client-detail-label">Faixa</span><span class="client-detail-value">R$ 400–700k</span></div>
-          <div class="client-detail-row"><span class="client-detail-label">Urgência</span><span class="client-detail-value">Até 3 meses</span></div>
-        </div>
-        <div class="client-footer"><span class="status-pill status-qualificado">✓ Qualificado</span><div class="score-bar"><div class="score-track"><div class="score-fill high" style="width:82%"></div></div><span class="score-num">82</span></div></div>
-      </div>
-      <div class="client-card" onclick="openModal('maria')">
-        <div class="client-card-top"><div class="client-avatar" style="background:var(--gold-pale);color:var(--amber);">MF</div><div><div class="client-name">Maria Fernanda</div><div class="client-phone">(51) 98765-4321</div></div></div>
-        <div class="client-details">
-          <div class="client-detail-row"><span class="client-detail-label">Objetivo</span><span class="client-detail-value">Alugar apt.</span></div>
-          <div class="client-detail-row"><span class="client-detail-label">Faixa</span><span class="client-detail-value">Até R$ 3k/mês</span></div>
-          <div class="client-detail-row"><span class="client-detail-label">Urgência</span><span class="client-detail-value">Imediatamente</span></div>
-        </div>
-        <div class="client-footer"><span class="status-pill status-qualificando">⏳ Qualificando</span><div class="score-bar"><div class="score-track"><div class="score-fill medium" style="width:65%"></div></div><span class="score-num">65</span></div></div>
-      </div>
-      <div class="client-card">
-        <div class="client-card-top"><div class="client-avatar" style="background:var(--amber-pale);color:var(--amber);">RA</div><div><div class="client-name">Roberto Alves</div><div class="client-phone">(51) 99234-5678</div></div></div>
-        <div class="client-details">
-          <div class="client-detail-row"><span class="client-detail-label">Objetivo</span><span class="client-detail-value">Vender casa</span></div>
-          <div class="client-detail-row"><span class="client-detail-label">Valor</span><span class="client-detail-value">R$ 550k</span></div>
-          <div class="client-detail-row"><span class="client-detail-label">Urgência</span><span class="client-detail-value">Imediatamente</span></div>
-        </div>
-        <div class="client-footer"><span class="status-pill status-transferido">↗ Transferido</span><div class="score-bar"><div class="score-track"><div class="score-fill high" style="width:90%"></div></div><span class="score-num">90</span></div></div>
-      </div>
-      <div class="client-card">
-        <div class="client-card-top"><div class="client-avatar" style="background:var(--green-pale);color:var(--green);">AP</div><div><div class="client-name">Ana Paula Costa</div><div class="client-phone">(51) 98344-1234</div></div></div>
-        <div class="client-details">
-          <div class="client-detail-row"><span class="client-detail-label">Objetivo</span><span class="client-detail-value">Comprar apt.</span></div>
-          <div class="client-detail-row"><span class="client-detail-label">Faixa</span><span class="client-detail-value">R$ 200–400k</span></div>
-          <div class="client-detail-row"><span class="client-detail-label">Urgência</span><span class="client-detail-value">Até 6 meses</span></div>
-        </div>
-        <div class="client-footer"><span class="status-pill status-novo">● Novo</span><div class="score-bar"><div class="score-track"><div class="score-fill low" style="width:35%"></div></div><span class="score-num">35</span></div></div>
-      </div>
-      <div class="client-card">
-        <div class="client-card-top"><div class="client-avatar av-blue" style="background:rgba(15,45,82,0.12);color:var(--navy);">PH</div><div><div class="client-name">Pedro Henrique</div><div class="client-phone">(51) 99456-7890</div></div></div>
-        <div class="client-details">
-          <div class="client-detail-row"><span class="client-detail-label">Objetivo</span><span class="client-detail-value">Comprar casa</span></div>
-          <div class="client-detail-row"><span class="client-detail-label">Faixa</span><span class="client-detail-value">Acima R$ 700k</span></div>
-          <div class="client-detail-row"><span class="client-detail-label">Urgência</span><span class="client-detail-value">Até 3 meses</span></div>
-        </div>
-        <div class="client-footer"><span class="status-pill status-qualificado">✓ Qualificado</span><div class="score-bar"><div class="score-track"><div class="score-fill high" style="width:75%"></div></div><span class="score-num">75</span></div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- AGENDA -->
+  <!-- ═══════════════════════════════════════════
+       AGENDA
+  ════════════════════════════════════════════ -->
   <div class="page" id="page-agenda">
     <div class="agenda-page-grid">
       <div class="section-card">
         <div class="agenda-day-header">
           <button class="agenda-nav-btn">← Anterior</button>
-          <div class="agenda-day-title">Sexta-feira, 6 de junho</div>
+          <div class="agenda-day-title">Segunda-feira, 8 de junho</div>
           <button class="agenda-nav-btn">Próximo →</button>
         </div>
-        <div class="agenda-event">
-          <div class="event-time-col"><div class="event-time">09:00</div><div class="event-end">10:00</div></div>
-          <div class="event-bar" style="background:var(--navy);"></div>
-          <div class="event-body"><div class="event-title">Visita ao apartamento — Centro</div><div class="event-sub">João da Silva · Rua XV de Novembro, 320</div><span class="event-tag tag-visita">Visita</span></div>
-        </div>
-        <div class="agenda-event">
-          <div class="event-time-col"><div class="event-time">11:30</div><div class="event-end">12:30</div></div>
-          <div class="event-bar" style="background:var(--gold);"></div>
-          <div class="event-body"><div class="event-title">Reunião com construtora Bairro Novo</div><div class="event-sub">Escritório da construtora · Rua Borges de Medeiros</div><span class="event-tag tag-reuniao">Reunião</span></div>
-        </div>
-        <div class="agenda-event">
-          <div class="event-time-col"><div class="event-time">14:00</div><div class="event-end">15:30</div></div>
-          <div class="event-bar" style="background:var(--navy);"></div>
-          <div class="event-body"><div class="event-title">Visita à casa — Menino Deus</div><div class="event-sub">Pedro Henrique · Av. Menino Deus, 780</div><span class="event-tag tag-visita">Visita</span></div>
-        </div>
-        <div class="agenda-event">
-          <div class="event-time-col"><div class="event-time">16:00</div><div class="event-end">16:30</div></div>
-          <div class="event-bar" style="background:var(--amber);"></div>
-          <div class="event-body"><div class="event-title">Ligação follow-up</div><div class="event-sub">Ana Paula Costa</div><span class="event-tag tag-ligacao">Ligação</span></div>
-        </div>
-        <div class="agenda-event">
-          <div class="event-time-col"><div class="event-time">17:00</div><div class="event-end">18:00</div></div>
-          <div class="event-bar" style="background:var(--green);"></div>
-          <div class="event-body"><div class="event-title">Assinatura de contrato</div><div class="event-sub">Roberto Alves · Escritório</div><span class="event-tag tag-contrato">Contrato</span></div>
-        </div>
+        <div class="agenda-event"><div class="event-time-col"><div class="event-time">09:00</div><div class="event-end">10:00</div></div><div class="event-bar" style="background:var(--navy);"></div><div class="event-body"><div class="event-title">Visita ao apartamento — Centro</div><div class="event-sub">João da Silva · Rua XV de Novembro, 320</div><span class="event-tag tag-visita">Visita</span></div></div>
+        <div class="agenda-event"><div class="event-time-col"><div class="event-time">11:30</div><div class="event-end">12:30</div></div><div class="event-bar" style="background:var(--gold);"></div><div class="event-body"><div class="event-title">Reunião com construtora Bairro Novo</div><div class="event-sub">Escritório · Rua Borges de Medeiros</div><span class="event-tag tag-reuniao">Reunião</span></div></div>
+        <div class="agenda-event"><div class="event-time-col"><div class="event-time">14:00</div><div class="event-end">15:30</div></div><div class="event-bar" style="background:var(--navy);"></div><div class="event-body"><div class="event-title">Visita à casa — Menino Deus</div><div class="event-sub">Pedro Henrique · Av. Menino Deus, 780</div><span class="event-tag tag-visita">Visita</span></div></div>
+        <div class="agenda-event"><div class="event-time-col"><div class="event-time">16:00</div><div class="event-end">16:30</div></div><div class="event-bar" style="background:var(--amber);"></div><div class="event-body"><div class="event-title">Follow-up — Ana Paula Costa</div><div class="event-sub">Ligação · (51) 98344-1234</div><span class="event-tag tag-ligacao">Ligação</span></div></div>
+        <div class="agenda-event"><div class="event-time-col"><div class="event-time">17:00</div><div class="event-end">18:00</div></div><div class="event-bar" style="background:var(--green);"></div><div class="event-body"><div class="event-title">Assinatura de contrato</div><div class="event-sub">Roberto Alves · Escritório</div><span class="event-tag tag-contrato">Contrato</span></div></div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:16px;">
+      <div style="display:flex;flex-direction:column;gap:14px;">
         <div class="mini-cal">
-          <div class="mini-cal-header">
-            <div class="mini-cal-title">Junho 2026</div>
-            <div style="display:flex;gap:4px;">
-              <button style="background:none;border:1px solid var(--gray-200);border-radius:6px;padding:3px 8px;cursor:pointer;font-size:12px;">‹</button>
-              <button style="background:none;border:1px solid var(--gray-200);border-radius:6px;padding:3px 8px;cursor:pointer;font-size:12px;">›</button>
-            </div>
-          </div>
+          <div class="mini-cal-header"><div class="mini-cal-title">Junho 2026</div><div style="display:flex;gap:3px;"><button style="background:none;border:1px solid var(--gray-200);border-radius:5px;padding:2px 7px;cursor:pointer;font-size:11px;">‹</button><button style="background:none;border:1px solid var(--gray-200);border-radius:5px;padding:2px 7px;cursor:pointer;font-size:11px;">›</button></div></div>
           <div class="cal-grid">
             <div class="cal-day-name">D</div><div class="cal-day-name">S</div><div class="cal-day-name">T</div><div class="cal-day-name">Q</div><div class="cal-day-name">Q</div><div class="cal-day-name">S</div><div class="cal-day-name">S</div>
-            <div class="cal-day other-month">1</div><div class="cal-day other-month">2</div><div class="cal-day other-month">3</div><div class="cal-day other-month">4</div><div class="cal-day other-month">5</div><div class="cal-day has-event">6</div><div class="cal-day today">7</div>
-            <div class="cal-day has-event">8</div><div class="cal-day">9</div><div class="cal-day has-event">10</div><div class="cal-day">11</div><div class="cal-day">12</div><div class="cal-day has-event">13</div><div class="cal-day">14</div>
+            <div class="cal-day other-month">1</div><div class="cal-day other-month">2</div><div class="cal-day other-month">3</div><div class="cal-day other-month">4</div><div class="cal-day other-month">5</div><div class="cal-day other-month">6</div><div class="cal-day other-month">7</div>
+            <div class="cal-day today">8</div><div class="cal-day has-event">9</div><div class="cal-day has-event">10</div><div class="cal-day">11</div><div class="cal-day">12</div><div class="cal-day has-event">13</div><div class="cal-day">14</div>
             <div class="cal-day">15</div><div class="cal-day has-event">16</div><div class="cal-day">17</div><div class="cal-day">18</div><div class="cal-day has-event">19</div><div class="cal-day">20</div><div class="cal-day">21</div>
             <div class="cal-day">22</div><div class="cal-day">23</div><div class="cal-day has-event">24</div><div class="cal-day">25</div><div class="cal-day">26</div><div class="cal-day">27</div><div class="cal-day">28</div>
             <div class="cal-day">29</div><div class="cal-day">30</div>
@@ -610,7 +934,7 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;s
         </div>
         <div class="section-card">
           <div class="section-header"><span class="section-title">Próximos eventos</span></div>
-          <div class="agenda-item"><div class="agenda-time">Seg</div><div class="agenda-dot dot-navy"></div><div><div class="agenda-text">Visita — Apto Moinhos</div><div class="agenda-sub">João da Silva</div></div></div>
+          <div class="agenda-item"><div class="agenda-time">Ter</div><div class="agenda-dot dot-navy"></div><div><div class="agenda-text">Visita — Apto Moinhos</div><div class="agenda-sub">João da Silva</div></div></div>
           <div class="agenda-item"><div class="agenda-time">Qua</div><div class="agenda-dot dot-gold"></div><div><div class="agenda-text">Reunião de captação</div><div class="agenda-sub">Bairro Petrópolis</div></div></div>
           <div class="agenda-item"><div class="agenda-time">Sex</div><div class="agenda-dot dot-green"></div><div><div class="agenda-text">Proposta — Casa Ipanema</div><div class="agenda-sub">Pedro Henrique</div></div></div>
         </div>
@@ -618,7 +942,89 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;s
     </div>
   </div>
 
-  <!-- FINANCEIRO -->
+  <!-- ═══════════════════════════════════════════
+       CLIENTES
+  ════════════════════════════════════════════ -->
+  <div class="page" id="page-clientes">
+    <div class="clients-grid">
+      <div class="client-card" onclick="openModal('joao')">
+        <div class="client-card-top"><div class="client-avatar av-blue">JS</div><div><div class="client-name">João da Silva</div><div class="client-phone">(51) 99123-4567</div></div></div>
+        <div class="client-details">
+          <div class="client-detail-row"><span class="client-detail-label">Objetivo</span><span class="client-detail-value">Comprar apt.</span></div>
+          <div class="client-detail-row"><span class="client-detail-label">Faixa</span><span class="client-detail-value">R$ 400–700k</span></div>
+          <div class="client-detail-row"><span class="client-detail-label">Urgência</span><span class="client-detail-value">Até 3 meses</span></div>
+        </div>
+        <div class="client-footer">
+          <div style="display:flex;flex-direction:column;gap:3px;">
+            <span class="status-pill status-qualificado">✓ Qualificado</span>
+            <span class="badge-prio prio-visita" style="margin-top:2px;">🟡 Agendar visita</span>
+          </div>
+          <div class="score-bar"><div class="score-track"><div class="score-fill high" style="width:80%"></div></div><span class="score-num">80</span></div>
+        </div>
+      </div>
+      <div class="client-card" onclick="openModal('maria')">
+        <div class="client-card-top"><div class="client-avatar av-gold">MF</div><div><div class="client-name">Maria Fernanda</div><div class="client-phone">(51) 98765-4321</div></div></div>
+        <div class="client-details">
+          <div class="client-detail-row"><span class="client-detail-label">Objetivo</span><span class="client-detail-value">Alugar apt.</span></div>
+          <div class="client-detail-row"><span class="client-detail-label">Faixa</span><span class="client-detail-value">Até R$ 3k/mês</span></div>
+          <div class="client-detail-row"><span class="client-detail-label">Urgência</span><span class="client-detail-value">Imediatamente</span></div>
+        </div>
+        <div class="client-footer">
+          <div style="display:flex;flex-direction:column;gap:3px;">
+            <span class="status-pill status-qualificando">⏳ Qualificando</span>
+            <span class="badge-prio prio-nutrir" style="margin-top:2px;">🟢 Nutrir</span>
+          </div>
+          <div class="score-bar"><div class="score-track"><div class="score-fill medium" style="width:65%"></div></div><span class="score-num">65</span></div>
+        </div>
+      </div>
+      <div class="client-card">
+        <div class="client-card-top"><div class="client-avatar av-gold">RA</div><div><div class="client-name">Roberto Alves</div><div class="client-phone">(51) 99234-5678</div></div></div>
+        <div class="client-details">
+          <div class="client-detail-row"><span class="client-detail-label">Objetivo</span><span class="client-detail-value">Vender casa</span></div>
+          <div class="client-detail-row"><span class="client-detail-label">Valor</span><span class="client-detail-value">R$ 620.000</span></div>
+          <div class="client-detail-row"><span class="client-detail-label">Urgência</span><span class="client-detail-value">Até 3 meses</span></div>
+        </div>
+        <div class="client-footer">
+          <span class="status-pill status-transferido">↗ Transferido</span>
+          <span class="cap-badge cap-premium">🏆 Premium</span>
+        </div>
+      </div>
+      <div class="client-card">
+        <div class="client-card-top"><div class="client-avatar av-green">AP</div><div><div class="client-name">Ana Paula Costa</div><div class="client-phone">(51) 98344-1234</div></div></div>
+        <div class="client-details">
+          <div class="client-detail-row"><span class="client-detail-label">Objetivo</span><span class="client-detail-value">Comprar apt.</span></div>
+          <div class="client-detail-row"><span class="client-detail-label">Faixa</span><span class="client-detail-value">R$ 200–400k</span></div>
+          <div class="client-detail-row"><span class="client-detail-label">Urgência</span><span class="client-detail-value">Até 6 meses</span></div>
+        </div>
+        <div class="client-footer">
+          <div style="display:flex;flex-direction:column;gap:3px;">
+            <span class="status-pill status-novo">● Novo</span>
+            <span class="badge-prio prio-arquivar" style="margin-top:2px;">⚫ Arquivar</span>
+          </div>
+          <div class="score-bar"><div class="score-track"><div class="score-fill low" style="width:35%"></div></div><span class="score-num">35</span></div>
+        </div>
+      </div>
+      <div class="client-card">
+        <div class="client-card-top"><div class="client-avatar av-blue">PH</div><div><div class="client-name">Pedro Henrique</div><div class="client-phone">(51) 99456-7890</div></div></div>
+        <div class="client-details">
+          <div class="client-detail-row"><span class="client-detail-label">Objetivo</span><span class="client-detail-value">Comprar casa</span></div>
+          <div class="client-detail-row"><span class="client-detail-label">Faixa</span><span class="client-detail-value">Acima R$ 700k</span></div>
+          <div class="client-detail-row"><span class="client-detail-label">Urgência</span><span class="client-detail-value">Até 3 meses</span></div>
+        </div>
+        <div class="client-footer">
+          <div style="display:flex;flex-direction:column;gap:3px;">
+            <span class="status-pill status-qualificado">✓ Qualificado</span>
+            <span class="badge-prio prio-ligar" style="margin-top:2px;">🔴 Ligar agora</span>
+          </div>
+          <div class="score-bar"><div class="score-track"><div class="score-fill high" style="width:75%"></div></div><span class="score-num">75</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       FINANCEIRO
+  ════════════════════════════════════════════ -->
   <div class="page" id="page-financeiro">
     <div class="fin-grid">
       <div class="fin-card"><div class="fin-label">Comissões recebidas (mês)</div><div class="fin-value">R$ 18.500</div><div class="fin-sub">↑ +12% vs mês anterior</div></div>
@@ -627,109 +1033,54 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;s
     </div>
     <div class="section-card">
       <div class="section-header"><span class="section-title">Pipeline de negócios</span></div>
-      <div style="padding:20px;">
-        <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--gray-600);margin-bottom:8px;">
-          <span>Qualificação</span><span>Visita</span><span>Proposta</span><span>Contrato</span><span>Fechado</span>
-        </div>
+      <div style="padding:18px 20px;">
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--gray-600);margin-bottom:6px;"><span>Qualificação</span><span>Visita</span><span>Proposta</span><span>Contrato</span><span>Fechado</span></div>
         <div class="pipeline-bar">
-          <div class="pipeline-seg" style="background:rgba(15,45,82,0.15);width:35%;"></div>
-          <div class="pipeline-seg" style="background:rgba(15,45,82,0.3);width:25%;"></div>
-          <div class="pipeline-seg" style="background:rgba(15,45,82,0.5);width:20%;"></div>
-          <div class="pipeline-seg" style="background:rgba(15,45,82,0.7);width:12%;"></div>
+          <div class="pipeline-seg" style="background:rgba(15,45,82,.15);width:35%;"></div>
+          <div class="pipeline-seg" style="background:rgba(15,45,82,.3);width:25%;"></div>
+          <div class="pipeline-seg" style="background:rgba(15,45,82,.5);width:20%;"></div>
+          <div class="pipeline-seg" style="background:rgba(15,45,82,.7);width:12%;"></div>
           <div class="pipeline-seg" style="background:var(--green);width:8%;"></div>
         </div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--gray-400);margin-top:6px;">
-          <span>12 leads</span><span>8</span><span>5</span><span>3</span><span>2</span>
-        </div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--gray-400);margin-top:5px;"><span>12 leads</span><span>8</span><span>5</span><span>3</span><span>2</span></div>
       </div>
     </div>
     <div class="section-card">
       <div class="section-header"><span class="section-title">Histórico de transações</span></div>
       <table class="transacoes-table">
-        <thead><tr><th>Data</th><th>Descrição</th><th>Imóvel</th><th>Valor</th><th>Status</th></tr></thead>
+        <thead><tr><th>Data</th><th>Descrição</th><th>Cliente</th><th>Valor</th><th>Status</th></tr></thead>
         <tbody>
-          <tr><td style="font-size:13px;color:var(--gray-600);">06/06</td><td style="font-size:13px;font-weight:500;">Comissão venda</td><td style="font-size:13px;">Roberto Alves</td><td class="valor-positivo">+R$ 9.900</td><td><span class="status-pill status-qualificado">Recebido</span></td></tr>
-          <tr><td style="font-size:13px;color:var(--gray-600);">01/06</td><td style="font-size:13px;font-weight:500;">Comissão aluguel</td><td style="font-size:13px;">Cliente anterior</td><td class="valor-positivo">+R$ 8.600</td><td><span class="status-pill status-qualificado">Recebido</span></td></tr>
-          <tr><td style="font-size:13px;color:var(--gray-600);">15/06</td><td style="font-size:13px;font-weight:500;">Comissão venda</td><td style="font-size:13px;">João da Silva</td><td class="valor-pendente">R$ 21.000</td><td><span class="status-pill status-qualificando">Pendente</span></td></tr>
-          <tr><td style="font-size:13px;color:var(--gray-600);">20/06</td><td style="font-size:13px;font-weight:500;">Comissão venda</td><td style="font-size:13px;">Pedro Henrique</td><td class="valor-pendente">R$ 15.000</td><td><span class="status-pill status-qualificando">Pendente</span></td></tr>
+          <tr><td style="font-size:12px;color:var(--gray-600);">06/06</td><td style="font-size:13px;font-weight:500;">Comissão venda</td><td style="font-size:13px;">Roberto Alves</td><td class="valor-positivo">+R$ 9.900</td><td><span class="status-pill status-qualificado">Recebido</span></td></tr>
+          <tr><td style="font-size:12px;color:var(--gray-600);">01/06</td><td style="font-size:13px;font-weight:500;">Comissão aluguel</td><td style="font-size:13px;">Cliente anterior</td><td class="valor-positivo">+R$ 8.600</td><td><span class="status-pill status-qualificado">Recebido</span></td></tr>
+          <tr><td style="font-size:12px;color:var(--gray-600);">15/06</td><td style="font-size:13px;font-weight:500;">Comissão venda</td><td style="font-size:13px;">João da Silva</td><td class="valor-pendente">R$ 21.000</td><td><span class="status-pill status-qualificando">Pendente</span></td></tr>
+          <tr><td style="font-size:12px;color:var(--gray-600);">20/06</td><td style="font-size:13px;font-weight:500;">Comissão venda</td><td style="font-size:13px;">Pedro Henrique</td><td class="valor-pendente">R$ 15.000</td><td><span class="status-pill status-qualificando">Pendente</span></td></tr>
         </tbody>
       </table>
     </div>
   </div>
 
-  <!-- RELATÓRIOS -->
+  <!-- ═══════════════════════════════════════════
+       RELATÓRIOS
+  ════════════════════════════════════════════ -->
   <div class="page" id="page-relatorios">
     <div class="rel-grid">
-      <div class="section-card">
-        <div class="section-header"><span class="section-title">Leads por semana</span></div>
-        <div class="chart-container">
-          <div class="bar-chart">
-            <div class="bar-wrap"><div class="bar-val">4</div><div class="bar" style="height:40%;background:rgba(15,45,82,0.2);"></div><div class="bar-label">S1</div></div>
-            <div class="bar-wrap"><div class="bar-val">7</div><div class="bar" style="height:70%;background:rgba(15,45,82,0.3);"></div><div class="bar-label">S2</div></div>
-            <div class="bar-wrap"><div class="bar-val">5</div><div class="bar" style="height:50%;background:rgba(15,45,82,0.2);"></div><div class="bar-label">S3</div></div>
-            <div class="bar-wrap"><div class="bar-val">10</div><div class="bar" style="height:100%;background:var(--navy);"></div><div class="bar-label">S4</div></div>
-            <div class="bar-wrap"><div class="bar-val">7</div><div class="bar" style="height:70%;background:rgba(15,45,82,0.5);"></div><div class="bar-label">S5</div></div>
-          </div>
-        </div>
-      </div>
-      <div class="section-card">
-        <div class="section-header"><span class="section-title">Leads por objetivo</span></div>
-        <div class="donut-wrap">
-          <svg width="100" height="100" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="38" fill="none" stroke="var(--gray-100)" stroke-width="14"/>
-            <circle cx="50" cy="50" r="38" fill="none" stroke="var(--navy)" stroke-width="14" stroke-dasharray="143 96" stroke-dashoffset="0" transform="rotate(-90 50 50)"/>
-            <circle cx="50" cy="50" r="38" fill="none" stroke="var(--gold)" stroke-width="14" stroke-dasharray="57 182" stroke-dashoffset="-143" transform="rotate(-90 50 50)"/>
-            <circle cx="50" cy="50" r="38" fill="none" stroke="var(--green)" stroke-width="14" stroke-dasharray="39 200" stroke-dashoffset="-200" transform="rotate(-90 50 50)"/>
-          </svg>
-          <div class="donut-legend">
-            <div class="legend-item"><div class="legend-dot" style="background:var(--navy);"></div><span>Comprar <strong>60%</strong></span></div>
-            <div class="legend-item"><div class="legend-dot" style="background:var(--gold);"></div><span>Vender <strong>24%</strong></span></div>
-            <div class="legend-item"><div class="legend-dot" style="background:var(--green);"></div><span>Alugar <strong>16%</strong></span></div>
-          </div>
-        </div>
-      </div>
-      <div class="section-card">
-        <div class="section-header"><span class="section-title">Faixas de valor mais buscadas</span></div>
-        <div class="chart-container">
-          <div class="bar-chart">
-            <div class="bar-wrap"><div class="bar-val">2</div><div class="bar" style="height:20%;background:rgba(15,45,82,0.15);"></div><div class="bar-label" style="font-size:10px;">Até 200k</div></div>
-            <div class="bar-wrap"><div class="bar-val">8</div><div class="bar" style="height:80%;background:var(--navy);"></div><div class="bar-label" style="font-size:10px;">200–400k</div></div>
-            <div class="bar-wrap"><div class="bar-val">10</div><div class="bar" style="height:100%;background:var(--navy);"></div><div class="bar-label" style="font-size:10px;">400–700k</div></div>
-            <div class="bar-wrap"><div class="bar-val">5</div><div class="bar" style="height:50%;background:rgba(15,45,82,0.4);"></div><div class="bar-label" style="font-size:10px;">>700k</div></div>
-          </div>
-        </div>
-      </div>
-      <div class="section-card">
-        <div class="section-header"><span class="section-title">Taxa de conversão</span></div>
-        <div style="padding:20px;display:flex;flex-direction:column;gap:14px;">
-          <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;"><span style="color:var(--gray-600);">Lead → Qualificado</span><span style="font-weight:600;color:var(--navy);">48%</span></div><div style="height:8px;background:var(--gray-100);border-radius:4px;overflow:hidden;"><div style="width:48%;height:100%;background:var(--navy);border-radius:4px;"></div></div></div>
-          <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;"><span style="color:var(--gray-600);">Qualificado → Visita</span><span style="font-weight:600;color:var(--navy);">75%</span></div><div style="height:8px;background:var(--gray-100);border-radius:4px;overflow:hidden;"><div style="width:75%;height:100%;background:var(--gold);border-radius:4px;"></div></div></div>
-          <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;"><span style="color:var(--gray-600);">Visita → Proposta</span><span style="font-weight:600;color:var(--navy);">60%</span></div><div style="height:8px;background:var(--gray-100);border-radius:4px;overflow:hidden;"><div style="width:60%;height:100%;background:var(--amber);border-radius:4px;"></div></div></div>
-          <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;"><span style="color:var(--gray-600);">Proposta → Fechamento</span><span style="font-weight:600;color:var(--green);">40%</span></div><div style="height:8px;background:var(--gray-100);border-radius:4px;overflow:hidden;"><div style="width:40%;height:100%;background:var(--green);border-radius:4px;"></div></div></div>
-        </div>
-      </div>
+      <div class="section-card"><div class="section-header"><span class="section-title">Leads por semana</span></div><div style="padding:18px"><div class="bar-chart"><div class="bar-wrap"><div class="bar-val">4</div><div class="bar" style="height:40%;background:rgba(15,45,82,.2);"></div><div class="bar-label">S1</div></div><div class="bar-wrap"><div class="bar-val">7</div><div class="bar" style="height:70%;background:rgba(15,45,82,.3);"></div><div class="bar-label">S2</div></div><div class="bar-wrap"><div class="bar-val">5</div><div class="bar" style="height:50%;background:rgba(15,45,82,.2);"></div><div class="bar-label">S3</div></div><div class="bar-wrap"><div class="bar-val">10</div><div class="bar" style="height:100%;background:var(--navy);"></div><div class="bar-label">S4</div></div><div class="bar-wrap"><div class="bar-val">7</div><div class="bar" style="height:70%;background:rgba(15,45,82,.5);"></div><div class="bar-label">S5</div></div></div></div></div>
+      <div class="section-card"><div class="section-header"><span class="section-title">Leads por objetivo</span></div><div class="donut-wrap"><svg width="90" height="90" viewBox="0 0 100 100"><circle cx="50" cy="50" r="38" fill="none" stroke="var(--gray-100)" stroke-width="14"/><circle cx="50" cy="50" r="38" fill="none" stroke="var(--navy)" stroke-width="14" stroke-dasharray="143 96" stroke-dashoffset="0" transform="rotate(-90 50 50)"/><circle cx="50" cy="50" r="38" fill="none" stroke="var(--gold)" stroke-width="14" stroke-dasharray="57 182" stroke-dashoffset="-143" transform="rotate(-90 50 50)"/><circle cx="50" cy="50" r="38" fill="none" stroke="var(--green)" stroke-width="14" stroke-dasharray="39 200" stroke-dashoffset="-200" transform="rotate(-90 50 50)"/></svg><div class="donut-legend"><div class="legend-item"><div class="legend-dot" style="background:var(--navy);"></div><span>Comprar <strong>60%</strong></span></div><div class="legend-item"><div class="legend-dot" style="background:var(--gold);"></div><span>Vender <strong>24%</strong></span></div><div class="legend-item"><div class="legend-dot" style="background:var(--green);"></div><span>Alugar <strong>16%</strong></span></div></div></div></div>
+      <div class="section-card"><div class="section-header"><span class="section-title">Faixas de valor mais buscadas</span></div><div style="padding:18px"><div class="bar-chart"><div class="bar-wrap"><div class="bar-val">2</div><div class="bar" style="height:20%;background:rgba(15,45,82,.15);"></div><div class="bar-label" style="font-size:9px;">Até 200k</div></div><div class="bar-wrap"><div class="bar-val">8</div><div class="bar" style="height:80%;background:var(--navy);"></div><div class="bar-label" style="font-size:9px;">200–400k</div></div><div class="bar-wrap"><div class="bar-val">10</div><div class="bar" style="height:100%;background:var(--navy);"></div><div class="bar-label" style="font-size:9px;">400–700k</div></div><div class="bar-wrap"><div class="bar-val">5</div><div class="bar" style="height:50%;background:rgba(15,45,82,.4);"></div><div class="bar-label" style="font-size:9px;">>700k</div></div></div></div></div>
+      <div class="section-card"><div class="section-header"><span class="section-title">Taxa de conversão</span></div><div style="padding:18px;display:flex;flex-direction:column;gap:12px;"><div><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px;"><span style="color:var(--gray-600);">Lead → Qualificado</span><span style="font-weight:600;color:var(--navy);">48%</span></div><div style="height:7px;background:var(--gray-100);border-radius:4px;overflow:hidden;"><div style="width:48%;height:100%;background:var(--navy);border-radius:4px;"></div></div></div><div><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px;"><span style="color:var(--gray-600);">Qualificado → Visita</span><span style="font-weight:600;color:var(--navy);">75%</span></div><div style="height:7px;background:var(--gray-100);border-radius:4px;overflow:hidden;"><div style="width:75%;height:100%;background:var(--gold);border-radius:4px;"></div></div></div><div><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px;"><span style="color:var(--gray-600);">Visita → Proposta</span><span style="font-weight:600;color:var(--navy);">60%</span></div><div style="height:7px;background:var(--gray-100);border-radius:4px;overflow:hidden;"><div style="width:60%;height:100%;background:var(--amber);border-radius:4px;"></div></div></div><div><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px;"><span style="color:var(--gray-600);">Proposta → Fechamento</span><span style="font-weight:600;color:var(--green);">40%</span></div><div style="height:7px;background:var(--gray-100);border-radius:4px;overflow:hidden;"><div style="width:40%;height:100%;background:var(--green);border-radius:4px;"></div></div></div></div></div>
     </div>
   </div>
+
 </main>
 
 <!-- BOTTOM NAV -->
 <nav class="bottom-nav">
   <div class="bottom-nav-inner">
-    <button class="bottom-nav-item active" onclick="showPage('dashboard',this);updateBottomNav(this)">
-      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>Início
-    </button>
-    <button class="bottom-nav-item" onclick="showPage('conversas',this);updateBottomNav(this)">
-      <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Conversas
-    </button>
-    <button class="bottom-nav-item" onclick="showPage('agenda',this);updateBottomNav(this)">
-      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Agenda
-    </button>
-    <button class="bottom-nav-item" onclick="showPage('clientes',this);updateBottomNav(this)">
-      <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Clientes
-    </button>
-    <button class="bottom-nav-item" onclick="showPage('relatorios',this);updateBottomNav(this)">
-      <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Relatórios
-    </button>
+    <button class="bottom-nav-item active" onclick="showPage('dashboard',this);updateBottomNav(this)"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>Início</button>
+    <button class="bottom-nav-item" onclick="showPage('conversas',this);updateBottomNav(this)"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Conversas</button>
+    <button class="bottom-nav-item" onclick="showPage('match',this);updateBottomNav(this)"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Match</button>
+    <button class="bottom-nav-item" onclick="showPage('clientes',this);updateBottomNav(this)"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Clientes</button>
+    <button class="bottom-nav-item" onclick="showPage('relatorios',this);updateBottomNav(this)"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Relatórios</button>
   </div>
 </nav>
 
@@ -751,16 +1102,24 @@ svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;s
 
 <script>
 const leads={
-  joao:{nome:'João da Silva',phone:'(51) 99123-4567 · joao.silva@gmail.com',score:82,objetivo:'Comprar',tipo:'Apartamento',cidade_desejada:'Porto Alegre',bairro:'Menino Deus ou Moinhos',faixa_valor:'R$ 400k – R$ 700k',entrada:'R$ 80.000',financiamento:'Sim',aprovacao:'Em andamento',fgts:'Sim',finalidade:'Morar',quartos:'2 ou 3',vagas:'1',area:'Min. 75m²',aceita_usado:'Sim',aceita_planta:'Não',aceita_cond:'Sim',urgencia:'Até 3 meses',motivo:'Casamento',contato:'WhatsApp',status:'Qualificado'},
-  maria:{nome:'Maria Fernanda',phone:'(51) 98765-4321 · mfernanda@gmail.com',score:65,objetivo:'Alugar',tipo:'Apartamento',cidade_desejada:'Porto Alegre',bairro:'Independência ou Floresta',faixa_valor:'Até R$ 3.000/mês',entrada:'—',financiamento:'—',aprovacao:'—',fgts:'—',finalidade:'Morar',quartos:'2',vagas:'1',area:'Min. 60m²',aceita_usado:'Sim',aceita_planta:'—',aceita_cond:'Sim',urgencia:'Imediatamente',motivo:'Mudança de cidade',contato:'WhatsApp',status:'Qualificando'}
+  joao:{nome:'João da Silva',phone:'(51) 99123-4567 · joao.silva@gmail.com',score:80,scoreA:67,scoreB:74,scoreC:85,classificacao:'Alta',badge:'agendar_visita',objetivo:'Comprar',tipo:'Apartamento',cidade_desejada:'Porto Alegre',bairro:'Menino Deus ou Moinhos',faixa_valor:'R$ 400k – R$ 700k',entrada:'R$ 80.000',financiamento:'Aprovado',fgts:'Sim',finalidade:'Morar',quartos:'2 ou 3',vagas:'1',area:'Min. 75m²',aceita_usado:'Sim',aceita_planta:'Não',aceita_cond:'Sim',urgencia:'Até 3 meses',motivo:'Casamento',contato:'WhatsApp',status:'Qualificado',
+    motivos_pos:['Casamento marcado — data-limite real','Financiamento já aprovado','Bairro específico definido','Faixa de valor compatível com portfólio'],
+    motivos_neg:['Ainda não visitou nenhum imóvel','Decisão a confirmar com cônjuge','8 dias sem contato — score em decaimento']},
+  maria:{nome:'Maria Fernanda',phone:'(51) 98765-4321 · mfernanda@gmail.com',score:65,scoreA:49,scoreB:52,scoreC:73,classificacao:'Média',badge:'nutrir',objetivo:'Alugar',tipo:'Apartamento',cidade_desejada:'Porto Alegre',bairro:'Independência ou Floresta',faixa_valor:'Até R$ 3.000/mês',entrada:'—',financiamento:'—',fgts:'—',finalidade:'Morar',quartos:'2',vagas:'1',area:'Min. 60m²',aceita_usado:'Sim',aceita_planta:'—',aceita_cond:'Sim',urgencia:'Imediatamente',motivo:'Mudança de cidade',contato:'WhatsApp',status:'Qualificando',
+    motivos_pos:['Mudança de cidade — urgência real','Urgência imediata declarada','Bairro específico definido'],
+    motivos_neg:['Forma de pagamento indefinida para aluguel','Sem comprovação de renda informada']}
 };
+
+const badgeLabels={ligar_agora:'🔴 Ligar agora',agendar_visita:'🟡 Agendar visita',nutrir:'🟢 Nutrir',arquivar:'⚫ Arquivar'};
+const badgeClasses={ligar_agora:'prio-ligar',agendar_visita:'prio-visita',nutrir:'prio-nutrir',arquivar:'prio-arquivar'};
+const scoreClass=(s)=>s>=70?'verde':s>=50?'ouro':'cinza';
 
 const convs={
   joao:[{t:'user',m:'Olá, quero comprar um apartamento'},{t:'bot',m:'Olá! Sou o Rex, assistente virtual do corretor Carlos Mendes. Fico feliz em ajudar! Para começar, poderia me dizer seu nome?'},{t:'user',m:'João da Silva'},{t:'bot',m:'Prazer, João! Você tem alguma região de preferência em Porto Alegre?'},{t:'user',m:'Prefiro Menino Deus ou Moinhos de Vento'},{t:'bot',m:'Ótima escolha! Qual é a faixa de valor que você está considerando?'},{t:'user',m:'Entre 400 e 700 mil'},{t:'bot',m:'Perfeito! Carlos tem imóveis excelentes nessa faixa nessas regiões. Você pode ir ver um apartamento amanhã às 9h?'},{t:'user',m:'Sim, posso ir amanhã às 9h!'}],
   maria:[{t:'user',m:'Preciso alugar um apartamento'},{t:'bot',m:'Olá! Sou o Rex. Qual região você prefere?'},{t:'user',m:'Prefiro Independência ou Floresta'},{t:'bot',m:'Temos ótimas opções! Qual o valor máximo de aluguel?'},{t:'user',m:'Até 3 mil por mês'},{t:'bot',m:'Ótimo! Vou verificar as opções disponíveis para você.'}],
   ana:[{t:'user',m:'Boa tarde!'},{t:'bot',m:'Boa tarde! Sou o Rex. Como posso ajudar?'},{t:'user',m:'Quero ver o apartamento do Centro'}],
   pedro:[{t:'user',m:'Tenho interesse em casas acima de 700k'},{t:'bot',m:'Olá! Sou o Rex. Temos excelentes opções! Qual região você prefere?'},{t:'user',m:'Menino Deus ou Ipanema'},{t:'bot',m:'Perfeito! Carlos pode mostrar uma casa incrível na sexta às 14h. Funciona?'},{t:'user',m:'Perfeito! Até sexta então.'}],
-  roberto:[{t:'user',m:'Quero vender minha casa'},{t:'bot',m:'Olá! Posso ajudar. Qual é o endereço e o valor que você espera?'},{t:'user',m:'Fico no Bom Fim, espero 550 mil'},{t:'bot',m:'Ótimo! Carlos pode fazer uma avaliação. Pode preparar o contrato'}]
+  roberto:[{t:'user',m:'Quero vender minha casa'},{t:'bot',m:'Olá! Posso ajudar. Qual é o endereço e o valor que você espera?'},{t:'user',m:'Fico no Bom Fim, espero 620 mil'},{t:'bot',m:'Ótimo! Carlos pode fazer uma avaliação e já temos 5 compradores com perfil compatível. Posso agendar?'}]
 };
 
 const chatNames={joao:'João da Silva',maria:'Maria Fernanda',ana:'Ana Paula Costa',pedro:'Pedro Henrique',roberto:'Roberto Alves'};
@@ -770,12 +1129,8 @@ let currentConv='joao';
 
 function renderChat(id){
   const msgs=convs[id]||[];
-  const html=msgs.map(m=>`
-    <div class="msg ${m.t==='user'?'user':'bot'}">
-      <div class="msg-bubble">${m.m}</div>
-      <div class="msg-time">${m.t==='user'?'✓✓ ':''} ${new Date().getHours()}:${String(new Date().getMinutes()).padStart(2,'0')}</div>
-    </div>`).join('');
-  document.getElementById('chat-msgs').innerHTML=html;
+  const h=msgs.map(m=>`<div class="msg ${m.t==='user'?'user':'bot'}"><div class="msg-bubble">${m.m}</div><div class="msg-time">${m.t==='user'?'✓✓ ':''}${new Date().getHours()}:${String(new Date().getMinutes()).padStart(2,'0')}</div></div>`).join('');
+  document.getElementById('chat-msgs').innerHTML=h;
   document.getElementById('chat-msgs').scrollTop=99999;
 }
 
@@ -783,37 +1138,29 @@ function selectConv(el,id){
   document.querySelectorAll('.conv-item').forEach(i=>i.classList.remove('active'));
   el.classList.add('active');
   currentConv=id;
-  const ca=document.getElementById('chat-area');
-  ca.querySelector('.chat-header').innerHTML=`
-    <div class="conv-avatar ${chatColors[id]}" style="width:34px;height:34px;font-size:12px;">${chatInits[id]}</div>
-    <div><div style="font-size:14px;font-weight:500;color:var(--navy);">${chatNames[id]}</div><div style="font-size:12px;color:var(--green);">● Online agora</div></div>`;
+  document.getElementById('chat-area').querySelector('.chat-header').innerHTML=`<div class="conv-avatar ${chatColors[id]}" style="width:32px;height:32px;font-size:11px;">${chatInits[id]}</div><div><div style="font-size:13px;font-weight:500;color:var(--navy);">${chatNames[id]}</div><div style="font-size:11px;color:var(--green);">● Online agora</div></div>`;
   renderChat(id);
-  el.querySelector('.conv-unread')&&el.querySelector('.conv-unread').remove();
+  const u=el.querySelector('.conv-unread');if(u)u.remove();
 }
 
 function sendMsg(){
   const inp=document.getElementById('chat-input-field');
-  const txt=inp.value.trim();
-  if(!txt)return;
+  const txt=inp.value.trim();if(!txt)return;
   convs[currentConv].push({t:'user',m:txt});
-  renderChat(currentConv);
-  inp.value='';
-  setTimeout(()=>{
-    convs[currentConv].push({t:'bot',m:'Mensagem recebida! Carlos Mendes entrará em contato em breve.'});
-    renderChat(currentConv);
-  },1000);
+  renderChat(currentConv);inp.value='';
+  setTimeout(()=>{convs[currentConv].push({t:'bot',m:'Mensagem recebida! Carlos Mendes entrará em contato em breve.'});renderChat(currentConv);},1000);
 }
 
 document.addEventListener('DOMContentLoaded',()=>renderChat('joao'));
 document.getElementById('chat-input-field').addEventListener('keydown',e=>{if(e.key==='Enter')sendMsg();});
 
-const pageTitles={dashboard:'Dashboard',conversas:'Conversas',agenda:'Agenda',clientes:'Clientes',financeiro:'Financeiro',relatorios:'Relatórios'};
+const pageTitles={dashboard:'Dashboard',conversas:'Conversas',agenda:'Agenda',clientes:'Clientes',match:'Match Engine',captacao:'Captações',financeiro:'Financeiro',relatorios:'Relatórios'};
 
 function showPage(id,navEl){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
-  document.getElementById('page-title').textContent=pageTitles[id];
-  if(navEl&&navEl.classList.contains('nav-item')){
+  document.getElementById('page-title').textContent=pageTitles[id]||id;
+  if(navEl&&navEl.classList&&navEl.classList.contains('nav-item')){
     document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
     navEl.classList.add('active');
   }
@@ -829,12 +1176,32 @@ function openModal(id){
   const l=leads[id];if(!l)return;
   document.getElementById('modal-name').textContent=l.nome;
   document.getElementById('modal-phone').textContent=l.phone;
+  const badgeCls=badgeClasses[l.badge]||'prio-arquivar';
+  const badgeTxt=badgeLabels[l.badge]||'—';
   document.getElementById('modal-body').innerHTML=`
-    <div style="display:flex;align-items:center;gap:16px;">
-      <div class="score-display"><div class="score-big">${l.score}</div><div><div style="font-size:12px;color:var(--gray-400);font-weight:500;">Score do lead</div><div style="font-size:13px;color:var(--green);font-weight:500;">${l.score>=70?'Pronto para visita':'Em qualificação'}</div></div></div>
-      <div style="margin-left:auto;"><span class="status-pill ${l.status==='Qualificado'?'status-qualificado':'status-qualificando'}">${l.status}</span></div>
+    <div class="score-display">
+      <div>
+        <div class="score-big ${scoreClass(l.score)}">${l.score}</div>
+        <div style="font-size:10px;color:var(--gray-400);font-weight:500;text-transform:uppercase;letter-spacing:.4px;margin-top:2px;">Score Rex</div>
+      </div>
+      <div style="flex:1;">
+        <div class="score-triplo" style="margin:0;">
+          <div class="score-ind"><div class="score-ind-label">Intenção de compra<span>${l.scoreA}</span></div><div class="score-ind-bar"><div class="score-ind-fill ${l.scoreA>=70?'fill-green':l.scoreA>=40?'fill-gold':'fill-gray'}" style="width:${l.scoreA}%"></div></div></div>
+          <div class="score-ind"><div class="score-ind-label">Capacidade financeira<span>${l.scoreB}</span></div><div class="score-ind-bar"><div class="score-ind-fill ${l.scoreB>=70?'fill-green':l.scoreB>=40?'fill-gold':'fill-gray'}" style="width:${l.scoreB}%"></div></div></div>
+          <div class="score-ind"><div class="score-ind-label">Compatibilidade<span>${l.scoreC}</span></div><div class="score-ind-bar"><div class="score-ind-fill ${l.scoreC>=70?'fill-green':l.scoreC>=40?'fill-gold':'fill-gray'}" style="width:${l.scoreC}%"></div></div></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+        <span class="status-pill ${l.status==='Qualificado'?'status-qualificado':'status-qualificando'}">${l.status}</span>
+        <span class="badge-prio ${badgeCls}">${badgeTxt}</span>
+      </div>
     </div>
-    <div class="ficha-section"><div class="ficha-section-title">Identificação</div><div class="ficha-grid">
+    ${l.motivos_pos?`<div class="motivos-block">
+      <div class="motivos-pos">✅ Fatores positivos</div>
+      ${l.motivos_pos.map(m=>`<div class="motivo-item"><span>✅</span><span>${m}</span></div>`).join('')}
+      ${l.motivos_neg?`<div class="motivos-neg">⚠️ Fatores que reduzem a conversão</div>${l.motivos_neg.map(m=>`<div class="motivo-item"><span>⚠️</span><span>${m}</span></div>`).join('')}`:''}
+    </div>`:''}
+    <div class="ficha-section" style="margin-top:12px;"><div class="ficha-section-title">Identificação</div><div class="ficha-grid">
       <div class="ficha-item"><span class="ficha-label">Objetivo</span><span class="ficha-value highlight">${l.objetivo}</span></div>
       <div class="ficha-item"><span class="ficha-label">Tipo</span><span class="ficha-value">${l.tipo}</span></div>
       <div class="ficha-item"><span class="ficha-label">Urgência</span><span class="ficha-value highlight">${l.urgencia}</span></div>
